@@ -1,56 +1,96 @@
 
 import { motion } from "framer-motion";
-import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Brain, Code, Terminal, Users, Book } from "lucide-react";
+import { Brain, Code, Terminal, Book, Users, Laptop, Database, FileText } from "lucide-react";
 
-// Skill categories with their icons and items
 const skillCategories = {
-  "Programming and Data": {
+  "Core Technologies": {
     icon: <Code className="h-5 w-5 text-primary" />,
     skills: [
-      { name: "Python (OOP)", level: 90 },
-      { name: "SQL", level: 85 },
-      { name: "FastAPI", level: 80 },
-      { name: "Git", level: 85 },
+      "Python (OOP)",
+      "SQL",
+      "FastAPI",
+      "Git",
+      "Flask",
+      "Supabase"
     ]
   },
-  "AI and Machine Learning": {
+  "AI & ML": {
     icon: <Brain className="h-5 w-5 text-primary" />,
     skills: [
-      { name: "Neural Networks", level: 90 },
-      { name: "NLP", level: 85 },
-      { name: "Computer Vision", level: 85 },
-      { name: "RAG", level: 80 },
+      "Neural Networks",
+      "NLP",
+      "Computer Vision",
+      "RAG",
+      "Supervised Learning",
+      "Unsupervised Learning"
     ]
   },
-  "Libraries and Frameworks": {
+  "Frameworks & Libraries": {
     icon: <Terminal className="h-5 w-5 text-primary" />,
     skills: [
-      { name: "TensorFlow", level: 90 },
-      { name: "PyTorch", level: 85 },
-      { name: "LangChain", level: 90 },
-      { name: "Hugging Face", level: 85 },
+      "TensorFlow",
+      "PyTorch",
+      "Hugging Face",
+      "LangChain",
+      "Scikit-learn",
+      "PydanticAI"
     ]
   },
-  "Voice and LLM Technologies": {
+  "Voice & LLM": {
     icon: <Book className="h-5 w-5 text-primary" />,
     skills: [
-      { name: "ElevenLabs", level: 85 },
-      { name: "LLM Deployment", level: 80 },
-      { name: "Prompt Engineering", level: 90 },
-      { name: "Agent Development", level: 85 },
+      "ElevenLabs",
+      "GPT",
+      "Gemini",
+      "Claude",
+      "LLaMA",
+      "Ollama"
+    ]
+  },
+  "Tools & Platforms": {
+    icon: <Laptop className="h-5 w-5 text-primary" />,
+    skills: [
+      "Jupyter",
+      "N8N",
+      "Make.com",
+      "Zapier",
+      "Langflow",
+      "AutoGPT"
+    ]
+  },
+  "Data & APIs": {
+    icon: <Database className="h-5 w-5 text-primary" />,
+    skills: [
+      "OpenAI Platform",
+      "Google Vertex AI",
+      "Azure OpenAI",
+      "Azure AI Foundry",
+      "Pandas",
+      "NumPy"
+    ]
+  },
+  "Agent Development": {
+    icon: <FileText className="h-5 w-5 text-primary" />,
+    skills: [
+      "Agno",
+      "Crew AI",
+      "AutoGen",
+      "Google ADK",
+      "OpenAI SDK",
+      "Agentforce"
     ]
   },
   "Soft Skills": {
     icon: <Users className="h-5 w-5 text-primary" />,
     skills: [
-      { name: "Collaboration", level: 90 },
-      { name: "Technical Communication", level: 85 },
-      { name: "Problem Solving", level: 90 },
-      { name: "Critical Thinking", level: 85 },
+      "Technical Communication",
+      "Problem Solving",
+      "Critical Thinking",
+      "Collaboration",
+      "Agile Methodologies",
+      "Team Leadership"
     ]
   }
 };
@@ -80,38 +120,29 @@ const Skills = () => {
     >
       <motion.h1 variants={item} className="text-4xl font-bold mb-8">Skills & Expertise</motion.h1>
       
-      <Tabs defaultValue="Programming and Data" className="w-full">
-        <TabsList className="flex flex-wrap gap-2 mb-8">
-          {Object.keys(skillCategories).map((category) => (
-            <TabsTrigger key={category} value={category} className="flex items-center gap-2">
-              {skillCategories[category].icon}
-              {category}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        
-        {Object.entries(skillCategories).map(([category, { skills }]) => (
-          <TabsContent key={category} value={category}>
-            <div className="grid gap-6 md:grid-cols-2">
-              {skills.map((skill) => (
-                <motion.div 
-                  key={skill.name}
-                  variants={item}
-                  className="w-full"
-                >
-                  <Card className="p-6 hover:shadow-lg transition-shadow">
-                    <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-lg font-medium">{skill.name}</h3>
-                      <Badge variant="secondary">{skill.level}%</Badge>
-                    </div>
-                    <Progress value={skill.level} className="h-2" />
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </TabsContent>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Object.entries(skillCategories).map(([category, { icon, skills }]) => (
+          <motion.div key={category} variants={item}>
+            <Card className="p-6 h-full hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center gap-3 mb-4">
+                {icon}
+                <h3 className="text-xl font-semibold">{category}</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <Badge 
+                    key={skill}
+                    variant="secondary"
+                    className="text-sm py-1 px-3 hover:bg-primary hover:text-white transition-colors duration-200"
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
+          </motion.div>
         ))}
-      </Tabs>
+      </div>
     </motion.div>
   );
 };

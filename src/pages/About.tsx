@@ -1,39 +1,10 @@
 
 import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
 import { ProfessionalHighlights } from "@/components/ProfessionalHighlights";
 import { Timeline } from "@/components/Timeline";
-import { Star } from "lucide-react";
 
 const About = () => {
-  const skillCategories = {
-    "Programming and Data": [
-      { name: "Python (OOP)", level: 90 },
-      { name: "SQL", level: 85 },
-      { name: "FastAPI", level: 80 },
-      { name: "Git", level: 85 },
-    ],
-    "AI and Machine Learning": [
-      { name: "Neural Networks", level: 90 },
-      { name: "NLP", level: 85 },
-      { name: "Computer Vision", level: 85 },
-      { name: "RAG", level: 80 },
-    ],
-    "Libraries and Frameworks": [
-      { name: "TensorFlow", level: 90 },
-      { name: "PyTorch", level: 85 },
-      { name: "LangChain", level: 90 },
-      { name: "Hugging Face", level: 85 },
-    ],
-    "Voice and LLM Technologies": [
-      { name: "ElevenLabs", level: 85 },
-      { name: "LLM Deployment", level: 80 },
-      { name: "Prompt Engineering", level: 90 },
-      { name: "Agent Development", level: 85 },
-    ],
-  };
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -81,35 +52,6 @@ const About = () => {
           
           <ProfessionalHighlights />
           <Timeline />
-        </motion.div>
-        
-        <motion.div variants={item}>
-          <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-            <Star className="h-5 w-5 text-primary" />
-            Skills & Expertise
-          </h2>
-          
-          {Object.entries(skillCategories).map(([category, skills]) => (
-            <div key={category} className="mb-8">
-              <h3 className="text-xl font-medium mb-4">{category}</h3>
-              <div className="space-y-4">
-                {skills.map((skill) => (
-                  <motion.div 
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="flex justify-between mb-1">
-                      <span>{skill.name}</span>
-                      <span>{skill.level}%</span>
-                    </div>
-                    <Progress value={skill.level} className="h-2" />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          ))}
         </motion.div>
       </div>
     </motion.div>
