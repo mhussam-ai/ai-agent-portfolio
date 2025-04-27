@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Github, Linkedin, Mail, HardDrive } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Smile } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -54,7 +53,7 @@ const Index = () => {
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://huggingface.co/mhussam-ai" target="_blank" rel="noopener noreferrer" aria-label="Hugging Face Profile">
-              <HardDrive className="h-5 w-5" />
+              <Smile className="h-5 w-5" />
             </a>
           </Button>
         </div>
