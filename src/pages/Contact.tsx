@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Mail, MessageSquare, User, Send } from "lucide-react";
+import { Mail, MessageSquare, User, Send, MapPin, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 
 const formSchema = z.object({
@@ -73,35 +73,77 @@ const Contact = () => {
       initial="hidden"
       animate="show"
     >
-      <motion.h1 variants={item} className="text-4xl font-bold mb-8">Contact</motion.h1>
+      <motion.h1 variants={item} className="text-4xl font-bold mb-12">Contact</motion.h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <motion.div variants={item}>
-          <h2 className="text-2xl font-semibold mb-6">Get In Touch</h2>
-          <p className="text-lg mb-6">
-            I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
-          </p>
+          <motion.div 
+            className="mb-8"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            <h2 className="text-2xl font-semibold mb-6">Get In Touch</h2>
+            <p className="text-lg mb-6">
+              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+            </p>
+          </motion.div>
           
-          <div className="space-y-4 mb-6">
-            <div className="flex items-center gap-3">
-              <Mail className="h-5 w-5 text-primary" />
-              <a href="mailto:mohammadhussam.ai@gmail.com" className="hover:text-primary transition-colors">
-                mohammadhussam.ai@gmail.com
-              </a>
+          <motion.div 
+            className="space-y-6 mb-8"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            <div className="flex items-center gap-4 p-4 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors">
+              <div className="p-3 rounded-full bg-primary/10">
+                <Mail className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-medium">Email</h3>
+                <a href="mailto:mohammadhussam.ai@gmail.com" className="hover:text-primary transition-colors">
+                  mohammadhussam.ai@gmail.com
+                </a>
+              </div>
             </div>
-            <div className="flex items-center gap-3">
-              <MessageSquare className="h-5 w-5 text-primary" />
-              <span>Schedule a call on Calendly</span>
+            
+            <div className="flex items-center gap-4 p-4 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors">
+              <div className="p-3 rounded-full bg-primary/10">
+                <Calendar className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-medium">Schedule a Call</h3>
+                <span>Book a time on my Calendly</span>
+              </div>
             </div>
-          </div>
+            
+            <div className="flex items-center gap-4 p-4 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors">
+              <div className="p-3 rounded-full bg-primary/10">
+                <MapPin className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-medium">Location</h3>
+                <span>Remote - Worldwide</span>
+              </div>
+            </div>
+          </motion.div>
           
-          <p className="text-muted-foreground">
+          <motion.p 
+            className="text-muted-foreground"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
             Please feel free to reach out for collaboration opportunities, speaking engagements, or just to say hello!
-          </p>
+          </motion.p>
         </motion.div>
         
-        <motion.div variants={item}>
-          <Card className="p-6">
+        <motion.div 
+          variants={item}
+          whileHover={{ y: -5 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <Card className="p-6 border shadow-lg">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
@@ -113,7 +155,11 @@ const Contact = () => {
                         <User className="h-4 w-4" /> Name
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="Your name" {...field} />
+                        <Input 
+                          placeholder="Your name" 
+                          className="focus-visible:ring-primary" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -129,7 +175,12 @@ const Contact = () => {
                         <Mail className="h-4 w-4" /> Email
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="Your email" type="email" {...field} />
+                        <Input 
+                          placeholder="Your email" 
+                          type="email" 
+                          className="focus-visible:ring-primary" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -147,7 +198,8 @@ const Contact = () => {
                       <FormControl>
                         <Textarea 
                           placeholder="Your message" 
-                          rows={6} 
+                          rows={6}
+                          className="focus-visible:ring-primary" 
                           {...field} 
                         />
                       </FormControl>
@@ -158,12 +210,13 @@ const Contact = () => {
                 
                 <Button 
                   type="submit" 
-                  className="w-full gap-2" 
+                  className="w-full gap-2 group" 
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : (
                     <>
-                      Send Message <Send className="h-4 w-4" />
+                      Send Message 
+                      <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </>
                   )}
                 </Button>

@@ -1,10 +1,7 @@
 
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ExternalLink, Github, Calendar, Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { ProjectCard } from "@/components/ProjectCard";
 
 const Projects = () => {
   const projects = [
@@ -180,69 +177,7 @@ const Projects = () => {
                 {projects
                   .filter(project => tab === "all" || project.category === tab)
                   .map((project, index) => (
-                    <motion.div 
-                      key={project.title}
-                      variants={item}
-                      className="group"
-                      initial="hidden"
-                      animate="show"
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
-                        <div className="aspect-video w-full overflow-hidden bg-muted">
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                        </div>
-                        <div className="p-6 flex flex-col flex-grow">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                            <Calendar className="h-4 w-4" />
-                            <span>{project.date}</span>
-                          </div>
-                          
-                          <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                            {project.title}
-                          </h3>
-                          
-                          <p className="text-muted-foreground mb-4 line-clamp-2">
-                            {project.description}
-                          </p>
-                          
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {project.tech.map((tech) => (
-                              <Badge 
-                                key={tech} 
-                                variant="secondary"
-                                className="bg-muted hover:bg-primary hover:text-white transition-colors"
-                              >
-                                {tech}
-                              </Badge>
-                            ))}
-                          </div>
-                          
-                          <div className="mt-auto pt-4 border-t">
-                            <div className="flex flex-wrap gap-4">
-                              {project.github && (
-                                <Button asChild variant="outline" size="sm" className="gap-2">
-                                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                                    <Github className="h-4 w-4" />
-                                    View Code
-                                  </a>
-                                </Button>
-                              )}
-                              {project.features && (
-                                <Button variant="ghost" size="sm" className="gap-2">
-                                  <Star className="h-4 w-4" />
-                                  {project.features.length} Features
-                                </Button>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
-                    </motion.div>
+                    <ProjectCard key={project.title} project={project} index={index} />
                   ))}
               </div>
             </TabsContent>

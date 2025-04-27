@@ -121,22 +121,35 @@ const Skills = () => {
       <motion.h1 variants={item} className="text-4xl font-bold mb-8">Skills & Expertise</motion.h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Object.entries(skillCategories).map(([category, { icon, skills }]) => (
-          <motion.div key={category} variants={item}>
-            <Card className="p-6 h-full hover:shadow-lg transition-all duration-300">
+        {Object.entries(skillCategories).map(([category, { icon, skills }], index) => (
+          <motion.div 
+            key={category} 
+            variants={item}
+            whileHover={{ y: -5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <Card className="p-6 h-full hover:shadow-lg transition-all duration-300 border-t-4 border-t-primary/60">
               <div className="flex items-center gap-3 mb-4">
-                {icon}
+                <div className="p-2 rounded-full bg-primary/10">
+                  {icon}
+                </div>
                 <h3 className="text-xl font-semibold">{category}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <Badge 
+                {skills.map((skill, skillIndex) => (
+                  <motion.div
                     key={skill}
-                    variant="secondary"
-                    className="text-sm py-1 px-3 hover:bg-primary hover:text-white transition-colors duration-200"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
                   >
-                    {skill}
-                  </Badge>
+                    <Badge 
+                      variant="secondary"
+                      className="text-sm py-1 px-3 hover:bg-primary hover:text-white transition-colors duration-200"
+                    >
+                      {skill}
+                    </Badge>
+                  </motion.div>
                 ))}
               </div>
             </Card>

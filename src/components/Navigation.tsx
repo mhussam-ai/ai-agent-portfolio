@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "./theme-provider";
 import { Button } from "./ui/button";
@@ -5,25 +6,46 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Switch } from "./ui/switch";
-import { Label } from "./ui/label";
 
 export const Navigation = () => {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-background/80 backdrop-blur-sm border-b">
+    <motion.nav 
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-background/90 backdrop-blur-md shadow-sm" : "bg-background/80 backdrop-blur-sm"
+      } border-b`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="text-xl font-semibold hover:text-primary transition-colors">
-          Mohammad Hussam
-        </Link>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
+          <Link to="/" className="text-xl font-semibold hover:text-primary transition-colors">
+            <span className="pr-1">👨‍💻</span> Mohammad Hussam
+          </Link>
+        </motion.div>
         
         <div className="hidden md:flex items-center gap-6">
           <NavLinks />
@@ -32,7 +54,13 @@ export const Navigation = () => {
         
         <div className="flex items-center md:hidden">
           <ThemeToggle theme={theme} setTheme={setTheme} />
-          <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={toggleMenu} 
+            aria-label="Toggle menu"
+            className="ml-2"
+          >
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
@@ -53,7 +81,7 @@ export const Navigation = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 
@@ -76,7 +104,8 @@ const NavLinks = ({ mobile = false }: { mobile?: boolean }) => {
           key={link.path}
           to={link.path}
           className={`
-            relative ${mobile ? 'py-2 px-4' : ''} hover:text-primary transition-colors
+            relative ${mobile ? 'py-2 px-4 hover:bg-primary/5 rounded-md transition-colors' : ''} 
+            hover:text-primary transition-colors
             ${location.pathname === link.path ? 'text-primary font-medium' : ''}
           `}
         >
