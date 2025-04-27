@@ -63,6 +63,7 @@ const NavLinks = ({ mobile = false }: { mobile?: boolean }) => {
   const links = [
     { path: "/", label: "Home" },
     { path: "/about", label: "About" },
+    { path: "/skills", label: "Skills" },
     { path: "/projects", label: "Projects" },
     { path: "/blog", label: "Blog" },
     { path: "/contact", label: "Contact" },

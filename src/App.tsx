@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -21,6 +20,7 @@ const LazyAbout = lazy(() => import("./pages/About"));
 const LazyProjects = lazy(() => import("./pages/Projects"));
 const LazyBlog = lazy(() => import("./pages/Blog"));
 const LazyContact = lazy(() => import("./pages/Contact"));
+const LazySkills = lazy(() => import("./pages/Skills"));
 
 const queryClient = new QueryClient();
 
@@ -45,6 +45,11 @@ const AnimatedRoutes = () => {
         <Route path="/about" element={
           <Suspense fallback={<PageLoader />}>
             <LazyAbout />
+          </Suspense>
+        } />
+        <Route path="/skills" element={
+          <Suspense fallback={<PageLoader />}>
+            <LazySkills />
           </Suspense>
         } />
         <Route path="/projects" element={
