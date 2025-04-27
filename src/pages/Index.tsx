@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Github, Linkedin } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -16,12 +16,12 @@ const Index = () => {
         <h1 className="text-5xl md:text-6xl font-bold mb-4">
           Hi, I'm{" "}
           <span className="text-primary">
-            Alex Chen
+            Mohammad Hussam
           </span>
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-          AI Agent Developer specializing in creating intelligent, conversational systems 
-          that solve real-world problems.
+          AI Specialist focused on developing intelligent agentic systems and voice interfaces. 
+          Skilled in LangChain, Crew AI, and cutting-edge AI technologies.
         </p>
         
         <div className="flex flex-wrap gap-4 justify-center mt-8">
@@ -38,13 +38,23 @@ const Index = () => {
 
         <div className="flex justify-center gap-4 mt-8 pt-4">
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+            <a href="https://github.com/mhussam-ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
               <Github className="h-5 w-5" />
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+            <a href="https://linkedin.com/in/mhussam-ai" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
               <Linkedin className="h-5 w-5" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <a href="mailto:mohammadhussam.ai@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+              <Mail className="h-5 w-5" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <a href="https://huggingface.co/mhussam-ai" target="_blank" rel="noopener noreferrer" aria-label="Hugging Face Profile">
+              <ExternalLink className="h-5 w-5" />
             </a>
           </Button>
         </div>

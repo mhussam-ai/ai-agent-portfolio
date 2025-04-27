@@ -1,29 +1,33 @@
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
 
 const About = () => {
-  const skills = {
-    "AI & Machine Learning": [
-      { name: "Natural Language Processing", level: 90 },
-      { name: "Machine Learning", level: 85 },
-      { name: "LLM Fine-tuning", level: 80 },
+  const skillCategories = {
+    "Programming and Data": [
+      { name: "Python (OOP)", level: 90 },
+      { name: "SQL", level: 85 },
+      { name: "FastAPI", level: 80 },
+      { name: "Git", level: 85 },
     ],
-    "Frontend Development": [
-      { name: "React", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "Next.js", level: 80 },
+    "AI and Machine Learning": [
+      { name: "Neural Networks", level: 90 },
+      { name: "NLP", level: 85 },
+      { name: "Computer Vision", level: 85 },
+      { name: "RAG", level: 80 },
     ],
-    "Backend Technologies": [
-      { name: "Node.js", level: 85 },
-      { name: "Python", level: 90 },
-      { name: "GraphQL", level: 75 },
+    "Libraries and Frameworks": [
+      { name: "TensorFlow", level: 90 },
+      { name: "PyTorch", level: 85 },
+      { name: "LangChain", level: 90 },
+      { name: "Hugging Face", level: 85 },
     ],
-    "DevOps & Cloud": [
-      { name: "AWS", level: 80 },
-      { name: "Docker", level: 75 },
-      { name: "CI/CD", level: 70 },
+    "Voice and LLM Technologies": [
+      { name: "ElevenLabs", level: 85 },
+      { name: "LLM Deployment", level: 80 },
+      { name: "Prompt Engineering", level: 90 },
+      { name: "Agent Development", level: 85 },
     ],
   };
 
@@ -55,30 +59,30 @@ const About = () => {
         <motion.div variants={item}>
           <h2 className="text-2xl font-semibold mb-4">Professional Background</h2>
           <p className="text-lg mb-6">
-            I'm an AI Agent developer with over 5 years of experience creating intelligent 
-            conversational systems. My background in machine learning and natural language 
-            processing allows me to build AI solutions that are both powerful and user-friendly.
+            I'm an AI Specialist with expertise in developing agentic systems and voice interfaces. 
+            My work with LangChain, Crew AI, and Pydantic has achieved significant results, including 
+            91% accuracy in satellite imagery analysis.
           </p>
           <p className="text-lg mb-6">
-            After completing my Master's in Computer Science with a focus on AI, I've worked with 
-            startups and enterprise clients to develop custom AI agents that solve specific business 
-            challenges across multiple industries.
+            As a Data Science Trainee at Bompix Mori IT Solutions, I implemented TensorFlow forecasting 
+            pipelines that reduced forecasting errors by 15%. Previously, at Spartificial Innovations, 
+            I led a team developing ML models for satellite imagery analysis.
           </p>
           <p className="text-lg">
-            I'm passionate about creating AI systems that are ethical, transparent, and that 
-            augment human capabilities rather than replace them. My approach focuses on building 
-            AI that's accessible to everyone and that delivers real value.
+            I'm passionate about creating AI systems that solve real-world problems and am continuously 
+            learning cutting-edge technologies like RAG and LLM deployment. My approach focuses on 
+            building practical, efficient solutions that deliver measurable results.
           </p>
         </motion.div>
         
         <motion.div variants={item}>
           <h2 className="text-2xl font-semibold mb-6">Skills & Expertise</h2>
           
-          {Object.entries(skills).map(([category, categorySkills]) => (
+          {Object.entries(skillCategories).map(([category, skills]) => (
             <div key={category} className="mb-8">
               <h3 className="text-xl font-medium mb-4">{category}</h3>
               <div className="space-y-4">
-                {categorySkills.map((skill) => (
+                {skills.map((skill) => (
                   <div key={skill.name}>
                     <div className="flex justify-between mb-1">
                       <span>{skill.name}</span>
