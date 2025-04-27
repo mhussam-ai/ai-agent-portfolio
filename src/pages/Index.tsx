@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Github, Linkedin, Mail, Smile } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Smile, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -69,6 +68,12 @@ const Index = () => {
               View Projects 
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="gap-2 border-primary/30 hover:border-primary transition-colors">
+            <a href="/resume.pdf" download aria-label="Download Resume">
+              <FileText className="h-4 w-4" />
+              Download Resume
+            </a>
           </Button>
           <Button asChild variant="outline" size="lg" className="border-primary/30 hover:border-primary transition-colors">
             <Link to="/contact">Get in Touch</Link>
