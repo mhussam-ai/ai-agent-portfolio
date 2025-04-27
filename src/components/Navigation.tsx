@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "./theme-provider";
 import { Button } from "./ui/button";
@@ -13,7 +12,6 @@ export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
@@ -24,16 +22,14 @@ export const Navigation = () => {
     <nav className="fixed w-full top-0 z-50 bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="text-xl font-semibold hover:text-primary transition-colors">
-          Alex Chen
+          Mohammad Hussam
         </Link>
         
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
           <NavLinks />
           <ThemeToggle theme={theme} setTheme={setTheme} />
         </div>
         
-        {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden">
           <ThemeToggle theme={theme} setTheme={setTheme} />
           <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
@@ -42,7 +38,6 @@ export const Navigation = () => {
         </div>
       </div>
       
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 

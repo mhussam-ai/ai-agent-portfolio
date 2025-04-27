@@ -2,6 +2,9 @@
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
+import { ProfessionalHighlights } from "@/components/ProfessionalHighlights";
+import { Timeline } from "@/components/Timeline";
+import { Star } from "lucide-react";
 
 const About = () => {
   const skillCategories = {
@@ -55,41 +58,54 @@ const About = () => {
     >
       <motion.h1 variants={item} className="text-4xl font-bold mb-8">About Me</motion.h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <motion.div variants={item}>
-          <h2 className="text-2xl font-semibold mb-4">Professional Background</h2>
-          <p className="text-lg mb-6">
-            I'm an AI Specialist with expertise in developing agentic systems and voice interfaces. 
-            My work with LangChain, Crew AI, and Pydantic has achieved significant results, including 
-            91% accuracy in satellite imagery analysis.
-          </p>
-          <p className="text-lg mb-6">
-            As a Data Science Trainee at Bompix Mori IT Solutions, I implemented TensorFlow forecasting 
-            pipelines that reduced forecasting errors by 15%. Previously, at Spartificial Innovations, 
-            I led a team developing ML models for satellite imagery analysis.
-          </p>
-          <p className="text-lg">
-            I'm passionate about creating AI systems that solve real-world problems and am continuously 
-            learning cutting-edge technologies like RAG and LLM deployment. My approach focuses on 
-            building practical, efficient solutions that deliver measurable results.
-          </p>
+          <Card className="p-6 mb-8">
+            <h2 className="text-2xl font-semibold mb-4">Professional Background</h2>
+            <p className="text-lg mb-6">
+              I'm an AI Specialist with expertise in developing agentic systems and voice interfaces. 
+              My work with LangChain, Crew AI, and Pydantic has achieved significant results, including 
+              91% accuracy in satellite imagery analysis.
+            </p>
+            <p className="text-lg mb-6">
+              As a Data Science Trainee at Bompix Mori IT Solutions, I implemented TensorFlow forecasting 
+              pipelines that reduced forecasting errors by 15%. Previously, at Spartificial Innovations, 
+              I led a team developing ML models for satellite imagery analysis.
+            </p>
+            <p className="text-lg">
+              I'm passionate about creating AI systems that solve real-world problems and am continuously 
+              learning cutting-edge technologies like RAG and LLM deployment. My approach focuses on 
+              building practical, efficient solutions that deliver measurable results.
+            </p>
+          </Card>
+          
+          <ProfessionalHighlights />
+          <Timeline />
         </motion.div>
         
         <motion.div variants={item}>
-          <h2 className="text-2xl font-semibold mb-6">Skills & Expertise</h2>
+          <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
+            <Star className="h-5 w-5 text-primary" />
+            Skills & Expertise
+          </h2>
           
           {Object.entries(skillCategories).map(([category, skills]) => (
             <div key={category} className="mb-8">
               <h3 className="text-xl font-medium mb-4">{category}</h3>
               <div className="space-y-4">
                 {skills.map((skill) => (
-                  <div key={skill.name}>
+                  <motion.div 
+                    key={skill.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <div className="flex justify-between mb-1">
                       <span>{skill.name}</span>
                       <span>{skill.level}%</span>
                     </div>
                     <Progress value={skill.level} className="h-2" />
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
