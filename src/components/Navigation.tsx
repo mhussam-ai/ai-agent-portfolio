@@ -1,44 +1,114 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "./theme-provider";
 import { Button } from "./ui/button";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Switch } from "./ui/switch";
+import { Label } from "./ui/label";
 
 export const Navigation = () => {
   const { theme, setTheme } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <nav className="fixed w-full top-0 z-50 bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="text-xl font-semibold hover:text-primary">
-          Portfolio
+        <Link to="/" className="text-xl font-semibold hover:text-primary transition-colors">
+          Alex Chen
         </Link>
-        <div className="flex items-center gap-6">
-          <Link to="/about" className="hover:text-primary transition-colors">
-            About
-          </Link>
-          <Link to="/projects" className="hover:text-primary transition-colors">
-            Projects
-          </Link>
-          <Link to="/blog" className="hover:text-primary transition-colors">
-            Blog
-          </Link>
-          <Link to="/contact" className="hover:text-primary transition-colors">
-            Contact
-          </Link>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          >
-            {theme === "light" ? (
-              <Moon className="h-5 w-5" />
-            ) : (
-              <Sun className="h-5 w-5" />
-            )}
+        
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-6">
+          <NavLinks />
+          <ThemeToggle theme={theme} setTheme={setTheme} />
+        </div>
+        
+        {/* Mobile Menu Button */}
+        <div className="flex items-center md:hidden">
+          <ThemeToggle theme={theme} setTheme={setTheme} />
+          <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
       </div>
+      
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="md:hidden bg-background border-b"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+              <NavLinks mobile />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
+  );
+};
+
+const NavLinks = ({ mobile = false }: { mobile?: boolean }) => {
+  const location = useLocation();
+  
+  const links = [
+    { path: "/", label: "Home" },
+    { path: "/about", label: "About" },
+    { path: "/projects", label: "Projects" },
+    { path: "/blog", label: "Blog" },
+    { path: "/contact", label: "Contact" },
+  ];
+  
+  return (
+    <>
+      {links.map((link) => (
+        <Link 
+          key={link.path}
+          to={link.path}
+          className={`
+            relative ${mobile ? 'py-2 px-4' : ''} hover:text-primary transition-colors
+            ${location.pathname === link.path ? 'text-primary font-medium' : ''}
+          `}
+        >
+          {link.label}
+          {location.pathname === link.path && (
+            <motion.div 
+              className="absolute bottom-[-2px] left-0 h-0.5 bg-primary"
+              layoutId="navbar-indicator"
+              initial={{ width: 0 }}
+              animate={{ width: '100%' }}
+              transition={{ type: "spring", stiffness: 350, damping: 30 }}
+            />
+          )}
+        </Link>
+      ))}
+    </>
+  );
+};
+
+const ThemeToggle = ({ theme, setTheme }: { theme: string, setTheme: (theme: "dark" | "light") => void }) => {
+  return (
+    <div className="flex items-center gap-2">
+      <Sun className="h-4 w-4" />
+      <Switch
+        checked={theme === "dark"}
+        onCheckedChange={() => setTheme(theme === "light" ? "dark" : "light")}
+      />
+      <Moon className="h-4 w-4" />
+    </div>
   );
 };
