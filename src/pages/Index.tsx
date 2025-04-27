@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Github, Linkedin, Mail, Smile, FileText } from "lucide-react";
@@ -10,12 +11,12 @@ const Index = () => {
         className="text-center space-y-8 max-w-3xl mx-auto"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.7 }}
+          transition={{ delay: 0.1, duration: 0.3 }}
           className="relative inline-block mb-6"
         >
           <div className="absolute inset-0 rounded-full bg-primary/10 blur-3xl animate-pulse"></div>
@@ -23,7 +24,7 @@ const Index = () => {
             <motion.div 
               className="text-4xl"
               animate={{ rotate: [0, 10, 0, -10, 0] }}
-              transition={{ repeat: Infinity, repeatDelay: 3, duration: 2 }}
+              transition={{ repeat: Infinity, repeatDelay: 2, duration: 1.5 }}
             >
               👋
             </motion.div>
