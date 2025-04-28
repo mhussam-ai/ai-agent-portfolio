@@ -118,6 +118,43 @@ const Skills = () => {
       initial="hidden"
       animate="show"
     >
+      <div className="relative overflow-hidden mb-16">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 opacity-50" />
+        <motion.div 
+          className="relative z-10 max-w-4xl mx-auto text-center py-12"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.h1 
+            variants={item}
+            className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-hover"
+          >
+            Technical Expertise
+          </motion.h1>
+          <motion.p 
+            variants={item}
+            className="text-lg md:text-xl text-muted-foreground mb-6"
+          >
+            AI Specialist with expertise in agentic systems, voice interfaces, and machine learning
+          </motion.p>
+          <motion.div 
+            variants={item}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            <Badge variant="secondary" className="text-sm py-1.5 px-4">
+              AI Development
+            </Badge>
+            <Badge variant="secondary" className="text-sm py-1.5 px-4">
+              Machine Learning
+            </Badge>
+            <Badge variant="secondary" className="text-sm py-1.5 px-4">
+              Voice Interfaces
+            </Badge>
+          </motion.div>
+        </motion.div>
+      </div>
+
       <motion.h1 variants={item} className="text-4xl font-bold mb-8">Skills & Expertise</motion.h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
