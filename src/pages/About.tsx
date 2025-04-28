@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -55,7 +56,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
           >
             <motion.h1 
-              className="text-3xl md:text-4xl lg:text-6xl font-bold bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
+              className="text-3xl md:text-4xl lg:text-6xl font-bold text-primary"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.8 }}
@@ -98,7 +99,7 @@ const About = () => {
                             <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors">
                               <Briefcase className="h-5 w-5 text-primary" />
                             </div>
-                            <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                            <h2 className="text-2xl font-bold text-primary">
                               Professional Background
                             </h2>
                           </div>
@@ -167,7 +168,7 @@ const About = () => {
                       <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
                         <Briefcase className="h-6 w-6 text-primary" />
                       </div>
-                      <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                      <h2 className="text-3xl font-bold text-primary">
                         Professional Background
                       </h2>
                     </div>
@@ -234,7 +235,7 @@ const About = () => {
                           <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors">
                             <Briefcase className="h-5 w-5 text-primary" />
                           </div>
-                          <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                          <h2 className="text-2xl font-bold text-primary">
                             Professional Highlights
                           </h2>
                         </div>
@@ -273,7 +274,7 @@ const About = () => {
                               <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors">
                                 <Star className="h-5 w-5 text-primary" />
                               </div>
-                              <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                              <h3 className="text-2xl font-bold text-primary">
                                 Career Timeline
                               </h3>
                             </div>
@@ -300,7 +301,7 @@ const About = () => {
                           <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors">
                             <Star className="h-5 w-5 text-primary" />
                           </div>
-                          <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                          <h3 className="text-2xl font-bold text-primary">
                             Career Timeline
                           </h3>
                         </div>
@@ -334,7 +335,7 @@ const About = () => {
                             <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors">
                               <GraduationCap className="h-5 w-5 text-primary" />
                             </div>
-                            <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                            <h3 className="text-xl font-bold text-primary">
                               Education
                             </h3>
                           </div>
@@ -347,13 +348,8 @@ const About = () => {
                       
                       <CollapsibleContent className="mt-6 space-y-4">
                         <div className="bg-white/80 dark:bg-black/20 rounded-lg p-4 backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors">
-                          <h4 className="font-semibold text-primary">Bachelor of Technology in Computer Science</h4>
-                          <p className="text-muted-foreground text-sm mt-1">Lovely Professional University, 2020-2024</p>
-                        </div>
-                        
-                        <div className="bg-white/80 dark:bg-black/20 rounded-lg p-4 backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors">
-                          <h4 className="font-semibold text-primary">AI & Machine Learning Certification</h4>
-                          <p className="text-muted-foreground text-sm mt-1">DeepLearning.AI, 2023</p>
+                          <h4 className="font-semibold text-primary">B.Tech in Artificial Intelligence</h4>
+                          <p className="text-muted-foreground text-sm mt-1">G. H. Raisoni Institute of Engineering and Business Management, 2020-2024</p>
                         </div>
                       </CollapsibleContent>
                     </CardContent>
@@ -366,20 +362,15 @@ const About = () => {
                       <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors">
                         <GraduationCap className="h-5 w-5 text-primary" />
                       </div>
-                      <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                      <h3 className="text-xl font-bold text-primary">
                         Education
                       </h3>
                     </div>
                     
                     <div className="space-y-4">
                       <div className="bg-white/80 dark:bg-black/20 rounded-lg p-4 backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors">
-                        <h4 className="font-semibold text-primary">Bachelor of Technology in Computer Science</h4>
-                        <p className="text-muted-foreground text-sm mt-1">Lovely Professional University, 2020-2024</p>
-                      </div>
-                      
-                      <div className="bg-white/80 dark:bg-black/20 rounded-lg p-4 backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors">
-                        <h4 className="font-semibold text-primary">AI & Machine Learning Certification</h4>
-                        <p className="text-muted-foreground text-sm mt-1">DeepLearning.AI, 2023</p>
+                        <h4 className="font-semibold text-primary">B.Tech in Artificial Intelligence</h4>
+                        <p className="text-muted-foreground text-sm mt-1">G. H. Raisoni Institute of Engineering and Business Management, 2020-2024</p>
                       </div>
                     </div>
                   </CardContent>
@@ -402,7 +393,7 @@ const About = () => {
                             <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors">
                               <Award className="h-5 w-5 text-primary" />
                             </div>
-                            <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                            <h3 className="text-xl font-bold text-primary">
                               Achievements
                             </h3>
                           </div>
@@ -416,10 +407,10 @@ const About = () => {
                       <CollapsibleContent className="mt-6">
                         <ul className="space-y-4">
                           {[
-                            "Hackathon Winner - AI Innovation Challenge 2023",
-                            "Published research on ML for environmental monitoring",
-                            "Top 5% contributor on AI research platforms",
-                            "Open source contributor to LangChain framework"
+                            "Class Representative First Year",
+                            "SIH Finalist",
+                            "Fast Learner, Always Learning New Skills and Latest Tech",
+                            "Experienced mentor and hackathon participant"
                           ].map((achievement, index) => (
                             <li key={index} className="flex items-center gap-3 bg-white/80 dark:bg-black/20 p-3 rounded-lg backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors">
                               <div className="h-2 w-2 rounded-full bg-primary shrink-0" />
@@ -438,17 +429,17 @@ const About = () => {
                       <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors">
                         <Award className="h-5 w-5 text-primary" />
                       </div>
-                      <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+                      <h3 className="text-xl font-bold text-primary">
                         Achievements
                       </h3>
                     </div>
                     
                     <ul className="space-y-4">
                       {[
-                        "Hackathon Winner - AI Innovation Challenge 2023",
-                        "Published research on ML for environmental monitoring",
-                        "Top 5% contributor on AI research platforms",
-                        "Open source contributor to LangChain framework"
+                        "Class Representative First Year",
+                        "SIH Finalist",
+                        "Fast Learner, Always Learning New Skills and Latest Tech",
+                        "Experienced mentor and hackathon participant"
                       ].map((achievement, index) => (
                         <li key={index} className="flex items-center gap-3 bg-white/80 dark:bg-black/20 p-3 rounded-lg backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors">
                           <div className="h-2 w-2 rounded-full bg-primary shrink-0" />
