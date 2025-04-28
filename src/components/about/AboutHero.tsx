@@ -39,7 +39,7 @@ export const AboutHero = () => {
       
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <motion.div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12 max-w-6xl mx-auto" variants={containerVariants} initial="hidden" animate="show">
-          <motion.div variants={itemVariants} className="flex-shrink-0 py-px">
+          <motion.div variants={itemVariants} className="flex-shrink-0 py-[9px]">
             <Avatar className="h-32 w-32 md:h-48 md:w-48 border-4 border-white/90 shadow-xl">
               <AvatarImage src="/placeholder.svg" alt="Mohammad Hussam" />
               <AvatarFallback className="text-3xl font-bold bg-primary/20 text-primary">MH</AvatarFallback>
