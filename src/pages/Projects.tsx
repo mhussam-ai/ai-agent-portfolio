@@ -8,7 +8,7 @@ const Projects = () => {
     {
       title: "Voice AI Agent for Customer Support",
       description: "A voice AI agent using ElevenLabs SDK and LangChain that reduced average response time by 20%. Implemented advanced voice processing capabilities.",
-      image: "https://via.placeholder.com/640x360",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&q=80&auto=format&fit=crop",
       tech: ["ElevenLabs", "LangChain", "Python"],
       features: [
         "20% reduction in response time",
@@ -22,7 +22,7 @@ const Projects = () => {
     {
       title: "Lead Research and Generation Agent",
       description: "An autonomous agent using Relevance AI that increased lead conversion rates by 10%. Streamlined lead generation process.",
-      image: "https://via.placeholder.com/640x360",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&q=80&auto=format&fit=crop",
       tech: ["Relevance AI", "Python", "FastAPI"],
       features: [
         "10% increase in conversion rates",
@@ -36,7 +36,7 @@ const Projects = () => {
     {
       title: "Autonomous Task Agent",
       description: "Task automation agent using BrowserUse and custom chain-of-thought prompts for reliable web interactions.",
-      image: "https://via.placeholder.com/640x360",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&q=80&auto=format&fit=crop",
       tech: ["BrowserUse", "Playwright", "LangChain"],
       features: [
         "Automated web interactions",
@@ -50,7 +50,7 @@ const Projects = () => {
     {
       title: "GrainSight AI",
       description: "Extended academic project for grain quality prediction using Google ADK and Gemini model, improving prediction accuracy by 12%.",
-      image: "https://via.placeholder.com/640x360",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&q=80&auto=format&fit=crop",
       tech: ["Streamlit", "Google ADK", "Python", "Gemini"],
       features: [
         "12% improvement in accuracy",
@@ -65,7 +65,7 @@ const Projects = () => {
     {
       title: "Predicting CVD",
       description: "RNN-based cardiovascular disease risk assessment model achieving AUC score of 0.9, outperforming baselines by 10%.",
-      image: "https://via.placeholder.com/640x360",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&q=80&auto=format&fit=crop",
       tech: ["TensorFlow", "Keras", "Matplotlib"],
       features: [
         "0.9 AUC score",
@@ -80,7 +80,7 @@ const Projects = () => {
     {
       title: "Organic Food Traceability",
       description: "Blockchain-based traceability system for organic food supply chains ensuring transparency and authenticity.",
-      image: "https://via.placeholder.com/640x360",
+      image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&q=80&auto=format&fit=crop",
       tech: ["Blockchain", "Python", "Smart Contracts"],
       features: [
         "End-to-end traceability",
@@ -95,7 +95,7 @@ const Projects = () => {
     {
       title: "StimulerVoiceX",
       description: "AI-powered noise cancellation system improving audio clarity by 25% with real-time processing capabilities.",
-      image: "https://via.placeholder.com/640x360",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&q=80&auto=format&fit=crop",
       tech: ["TensorFlow", "Keras", "Audio Processing"],
       features: [
         "25% improved audio clarity",
@@ -110,7 +110,7 @@ const Projects = () => {
     {
       title: "CollegeBot",
       description: "College query chatbot using Rasa, handling 90% of queries accurately with natural language understanding.",
-      image: "https://via.placeholder.com/640x360",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&q=80&auto=format&fit=crop",
       tech: ["Rasa", "Python", "NLP"],
       features: [
         "90% query accuracy",
