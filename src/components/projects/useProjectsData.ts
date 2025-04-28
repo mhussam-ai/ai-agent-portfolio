@@ -41,7 +41,7 @@ export const useProjectsData = () => {
       ],
       date: "Jan 2025 - Mar 2025",
       category: "ai",
-      status: "completed",
+      status: "ongoing",
       metrics: {
         responseTime: "20% faster",
         accuracy: "95% understanding rate",
@@ -90,7 +90,7 @@ export const useProjectsData = () => {
       ],
       date: "Jan 2025 - Mar 2025",
       category: "automation",
-      status: "ongoing",
+      status: "completed",
       metrics: {
         automationRate: "87% of tasks automated",
         errorRate: "Less than 3%",
