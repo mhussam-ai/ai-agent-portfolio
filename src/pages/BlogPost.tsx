@@ -568,8 +568,8 @@ URL structure significantly impacts both crawlability and user experience:
 - Use hyphens to separate words
 - Avoid parameters for important content when possible
 
-Example of good URL: https://example.com/blog/technical-seo/core-web-vitals-guide/
-Example of poor URL: https://example.com/p?id=12345&cat=4&sort=date
+Example of good URL: \`https://example.com/blog/technical-seo/core-web-vitals-guide/\`
+Example of poor URL: \`https://example.com/p?id=12345&cat=4&sort=date\`
 
 ## JavaScript SEO Considerations
 
@@ -747,4 +747,35 @@ By treating technical SEO as a foundational element of your digital strategy rat
         },
         {
           question: "What are the most common technical SEO issues for e-commerce sites?",
-          answer: "Common technical issues for e-commerce sites include improper handling of faceted navigation (creating millions of low-value URLs), duplicate content from product variants, thin
+          answer: "Common technical issues for e-commerce sites include improper handling of faceted navigation (creating millions of low-value URLs), duplicate content from product variants, thin category pages, JavaScript rendering issues affecting product visibility, improper canonicalization, and inadequate structured data implementation. Performance issues are also prevalent due to large product images and third-party scripts for tracking and personalization."
+        }
+      ]
+    }
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Helmet>
+        <title>{posts[0].title}</title>
+        <meta name="description" content={posts[0].metaDescription} />
+      </Helmet>
+      <Card>
+        <CardContent>
+          <CardHeader>
+            <CardTitle>{posts[0].title}</CardTitle>
+            <CardDescription>{posts[0].excerpt}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div dangerouslySetInnerHTML={{ __html: posts[0].content }} />
+          </CardContent>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
+
+export default BlogPost;
