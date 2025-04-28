@@ -29,8 +29,8 @@ export const HomepageHero = () => {
   };
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center py-16 md:py-24 px-4">
-      <div className="container mx-auto max-w-6xl pt-16 md:pt-0">
+    <section className="relative min-h-[100dvh] flex flex-col justify-center py-10 md:py-24 px-4">
+      <div className="container mx-auto max-w-6xl pt-8 md:pt-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Social Media Links - Left Side (Desktop) */}
           <motion.div 
@@ -46,7 +46,7 @@ export const HomepageHero = () => {
           <div className="lg:col-span-11 lg:grid lg:grid-cols-11">
             {/* Profile Image - For Mobile (Top) */}
             <motion.div 
-              className="lg:hidden flex items-center justify-center mb-8"
+              className="lg:hidden flex items-center justify-center mb-6"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
@@ -72,8 +72,15 @@ export const HomepageHero = () => {
         </div>
       </div>
       
-      {/* Scroll Down Indicator */}
-      <ScrollIndicator onClick={handleScrollDown} />
+      {/* Mobile Scroll Down Indicator (positioned within content flow) */}
+      <div className="lg:hidden mt-4 mb-6 w-full flex justify-center">
+        <ScrollIndicator onClick={handleScrollDown} />
+      </div>
+      
+      {/* Desktop Scroll Down Indicator (positioned absolutely) */}
+      <div className="hidden lg:block">
+        <ScrollIndicator onClick={handleScrollDown} />
+      </div>
     </section>
   );
 };

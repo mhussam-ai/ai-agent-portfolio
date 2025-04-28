@@ -8,15 +8,15 @@ interface ScrollIndicatorProps {
 
 export const ScrollIndicator = ({ onClick }: ScrollIndicatorProps) => (
   <motion.div 
-    className="absolute bottom-8 left-0 right-0 mx-auto w-max flex flex-col items-center cursor-pointer"
+    className="relative flex flex-col items-center cursor-pointer"
     initial={{ opacity: 0, y: -20 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 1, duration: 0.8 }}
+    transition={{ delay: 0.8, duration: 0.6 }}
     onClick={onClick}
   >
-    <span className="text-sm text-muted-foreground mb-2">Scroll Down</span>
+    <span className="text-sm text-muted-foreground mb-1">Scroll Down</span>
     <motion.div
-      animate={{ y: [0, 10, 0] }}
+      animate={{ y: [0, 8, 0] }}
       transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
     >
       <ArrowDown className="h-4 w-4 text-primary" />
