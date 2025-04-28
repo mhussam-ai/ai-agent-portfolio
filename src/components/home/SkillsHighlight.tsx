@@ -3,28 +3,55 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Code, Terminal, Book } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export const SkillsHighlight = () => {
   const skills = [
     {
       icon: <Brain className="h-8 w-8 text-primary" />,
       title: "AI & Machine Learning",
-      description: "Neural Networks, NLP, Computer Vision, RAG, Supervised & Unsupervised Learning",
+      skills: [
+        "Neural Networks", 
+        "NLP", 
+        "Computer Vision", 
+        "RAG", 
+        "Supervised Learning"
+      ],
     },
     {
       icon: <Code className="h-8 w-8 text-primary" />,
       title: "Core Technologies",
-      description: "Python (OOP), Pandas, NumPy, SQL, Git, Flask, FastAPI, Supabase",
+      skills: [
+        "Python (OOP)", 
+        "Pandas", 
+        "NumPy", 
+        "SQL", 
+        "Git", 
+        "FastAPI"
+      ],
     },
     {
       icon: <Terminal className="h-8 w-8 text-primary" />,
       title: "Agent Development",
-      description: "LangChain, PydanticAI, Agno, Crew AI, AutoGen, Agentforce",
+      skills: [
+        "LangChain", 
+        "PydanticAI", 
+        "Agno", 
+        "Crew AI", 
+        "AutoGen"
+      ],
     },
     {
       icon: <Book className="h-8 w-8 text-primary" />,
       title: "Voice & LLM",
-      description: "ElevenLabs, GPT, Gemini, Claude, LLaMA, Ollama, Fine-Tuning",
+      skills: [
+        "ElevenLabs", 
+        "GPT", 
+        "Gemini", 
+        "Claude", 
+        "LLaMA", 
+        "Fine-Tuning"
+      ],
     },
   ];
 
@@ -77,7 +104,7 @@ export const SkillsHighlight = () => {
           whileInView="show"
           viewport={{ once: true }}
         >
-          {skills.map((skill, index) => (
+          {skills.map((skillGroup, index) => (
             <motion.div 
               key={index}
               variants={item}
@@ -85,10 +112,21 @@ export const SkillsHighlight = () => {
               className="bg-card/30 backdrop-blur-sm p-6 rounded-lg border border-border/50 hover:border-primary/50 transition-all duration-300"
             >
               <div className="p-3 rounded-full bg-primary/10 w-fit mb-4">
-                {skill.icon}
+                {skillGroup.icon}
               </div>
-              <h4 className="text-xl font-semibold mb-2">{skill.title}</h4>
-              <p className="text-muted-foreground">{skill.description}</p>
+              <h4 className="text-xl font-semibold mb-4">{skillGroup.title}</h4>
+              
+              <div className="flex flex-wrap gap-2">
+                {skillGroup.skills.map((skill, i) => (
+                  <Badge 
+                    key={i} 
+                    variant="outline" 
+                    className="bg-primary/5 hover:bg-primary/20 transition-colors py-1"
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
             </motion.div>
           ))}
         </motion.div>

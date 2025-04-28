@@ -92,6 +92,9 @@ export const RecentPosts = () => {
                       src={post.image || "/placeholder.svg"} 
                       alt={post.title} 
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      onError={(e) => {
+                        e.currentTarget.src = "/placeholder.svg";
+                      }}
                     />
                   </div>
                   

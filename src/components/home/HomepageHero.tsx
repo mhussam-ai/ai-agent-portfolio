@@ -1,9 +1,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Github, Linkedin, Mail, FileText, Smile } from "lucide-react";
+import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Smile } from "lucide-react";
 import { motion } from "framer-motion";
 import { TypewriterEffect } from "./TypewriterEffect";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const HomepageHero = () => {
   const words = [
@@ -30,112 +31,180 @@ export const HomepageHero = () => {
   };
 
   return (
-    <motion.section 
-      className="relative pt-32 md:pt-40 pb-24 px-4 overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      {/* Background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-      </div>
-      
-      <div className="container mx-auto max-w-5xl">
-        <motion.div 
-          className="text-center space-y-8"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          <motion.div variants={item} className="mb-6 inline-block">
-            <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full bg-primary/10 blur-lg"></div>
-              <div className="w-28 h-28 md:w-32 md:h-32 bg-background border-2 border-primary/40 rounded-full flex items-center justify-center shadow-xl relative">
-                <motion.div 
-                  className="text-4xl"
-                  animate={{ rotate: [0, 10, 0, -10, 0] }}
-                  transition={{ repeat: Infinity, repeatDelay: 2, duration: 1.5 }}
-                >
-                  👋
-                </motion.div>
-              </div>
-            </div>
+    <section className="relative min-h-screen flex flex-col justify-center py-20 md:py-32 px-4">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Social Media Links - Left Side */}
+          <motion.div 
+            className="hidden lg:flex lg:col-span-1 flex-col items-center justify-center gap-6"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
+            <a 
+              href="https://github.com/mhussam-ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
+              aria-label="GitHub"
+            >
+              <Github className="h-5 w-5" />
+            </a>
+            <a 
+              href="https://linkedin.com/in/mhussam-ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a 
+              href="mailto:mohammadhussam.ai@gmail.com"
+              className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
+              aria-label="Email"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
+            <a 
+              href="https://huggingface.co/mhussam-ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
+              aria-label="Hugging Face"
+            >
+              <Smile className="h-5 w-5" />
+            </a>
           </motion.div>
 
-          <motion.div variants={item}>
-            <TypewriterEffect words={words} className="text-4xl md:text-5xl lg:text-6xl font-bold pb-2 text-center" />
-          </motion.div>
-          
-          <motion.h1 
-            variants={item}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold"
-          >
-            <span className="text-primary relative">
-              Mohammad Hussam
-              <motion.div
-                className="absolute -z-10 bottom-1 left-0 right-0 h-3 bg-primary/20 rounded-md"
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ delay: 1.2, duration: 0.6 }}
-              ></motion.div>
-            </span>
-          </motion.h1>
-          
-          <motion.p 
-            variants={item} 
-            className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto"
-          >
-            Building intelligent agentic systems and voice interfaces with cutting-edge AI technologies
-          </motion.p>
-          
+          {/* Main Content - Middle */}
           <motion.div 
-            variants={item}
-            className="flex flex-wrap justify-center gap-4 pt-6"
+            className="lg:col-span-7 flex flex-col justify-center"
+            variants={container}
+            initial="hidden"
+            animate="show"
           >
-            <Button asChild size="lg" className="gap-2 group">
-              <Link to="/projects">
-                Explore Projects
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </Button>
+            <motion.div variants={item} className="flex mb-2">
+              <div className="relative inline-block">
+                <span className="text-primary font-medium">Hello, I'm</span>
+              </div>
+            </motion.div>
             
-            <Button asChild variant="outline" size="lg" className="gap-2 border-primary/30 hover:border-primary transition-colors">
-              <a href="/resume.pdf" download>
-                <FileText className="h-4 w-4" />
-                Download Resume
-              </a>
-            </Button>
-          </motion.div>
-          
-          <motion.div 
-            variants={item}
-            className="flex justify-center gap-4 mt-6 pt-4"
-          >
-            <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10" asChild>
-              <a href="https://github.com/mhussam-ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+            <motion.h1 
+              variants={item} 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+            >
+              Mohammad Hussam
+            </motion.h1>
+            
+            <motion.div variants={item} className="h-12 mb-6">
+              <TypewriterEffect words={words} className="md:text-2xl lg:text-3xl font-medium text-muted-foreground" />
+            </motion.div>
+
+            <motion.p 
+              variants={item} 
+              className="text-base md:text-lg text-muted-foreground mb-8 max-w-lg"
+            >
+              AI Specialist with expertise in agentic systems, voice interfaces, and machine learning, utilizing tools like LangChain, Crew AI, Agno, and PydanticAI.
+            </motion.p>
+            
+            <motion.div 
+              variants={item}
+              className="flex flex-wrap gap-4"
+            >
+              <Button asChild size="lg" className="gap-2 group">
+                <Link to="/projects">
+                  Explore Projects
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </Button>
+              
+              <Button asChild variant="outline" size="lg" className="gap-2">
+                <Link to="/contact">
+                  Contact Me
+                  <Mail className="h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
+
+            {/* Mobile Social Links */}
+            <motion.div 
+              variants={item}
+              className="flex lg:hidden justify-start gap-4 mt-8"
+            >
+              <a 
+                href="https://github.com/mhussam-ai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
+                aria-label="GitHub"
+              >
                 <Github className="h-5 w-5" />
               </a>
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10" asChild>
-              <a href="https://linkedin.com/in/mhussam-ai" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+              <a 
+                href="https://linkedin.com/in/mhussam-ai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
+                aria-label="LinkedIn"
+              >
                 <Linkedin className="h-5 w-5" />
               </a>
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10" asChild>
-              <a href="mailto:mohammadhussam.ai@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+              <a 
+                href="mailto:mohammadhussam.ai@gmail.com"
+                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
+                aria-label="Email"
+              >
                 <Mail className="h-5 w-5" />
               </a>
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10" asChild>
-              <a href="https://huggingface.co/mhussam-ai" target="_blank" rel="noopener noreferrer" aria-label="Hugging Face Profile">
+              <a 
+                href="https://huggingface.co/mhussam-ai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
+                aria-label="Hugging Face"
+              >
                 <Smile className="h-5 w-5" />
               </a>
-            </Button>
+            </motion.div>
           </motion.div>
-        </motion.div>
+          
+          {/* Profile Image - Right Side */}
+          <motion.div 
+            className="lg:col-span-4 flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-full bg-primary/10 blur-2xl"></div>
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-primary/30 overflow-hidden relative z-10">
+                <Avatar className="w-full h-full">
+                  <AvatarImage src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=1740&auto=format&fit=crop" alt="Mohammad Hussam" />
+                  <AvatarFallback>MH</AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-transparent blur-xl -z-10"></div>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </motion.section>
+      
+      {/* Scroll Down Indicator */}
+      <motion.div 
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+        <span className="text-sm text-muted-foreground mb-2">Scroll Down</span>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+        >
+          <ArrowDown className="h-4 w-4 text-primary" />
+        </motion.div>
+      </motion.div>
+    </section>
   );
 };

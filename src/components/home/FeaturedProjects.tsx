@@ -12,7 +12,7 @@ export const FeaturedProjects = () => {
       id: 1,
       title: "Voice AI Agent for Customer Support",
       description: "An intelligent voice interface that responds to customer inquiries, built with ElevenLabs SDK for natural voice interactions.",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1626908013351-800ddd734b8a?q=80&w=1000",
       tags: ["Voice AI", "ElevenLabs", "Customer Support"],
       link: "/projects",
       date: "April 2025"
@@ -21,7 +21,7 @@ export const FeaturedProjects = () => {
       id: 2,
       title: "Lead Research and Generation Agent",
       description: "Autonomous agent that identifies potential leads and generates research reports using Relevance AI.",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000",
       tags: ["Autonomous Agent", "Relevance AI", "Lead Generation"],
       link: "/projects",
       date: "March 2025"
@@ -30,7 +30,7 @@ export const FeaturedProjects = () => {
       id: 3,
       title: "GrainSight AI",
       description: "Computer vision system for grain quality prediction using Google ADK and Gemini model.",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1000",
       tags: ["Computer Vision", "Google ADK", "Gemini"],
       link: "https://github.com/mhussam-ai/Grain-Quality-AI",
       github: "https://github.com/mhussam-ai/Grain-Quality-AI",
@@ -117,6 +117,9 @@ export const FeaturedProjects = () => {
                     src={project.image} 
                     alt={project.title} 
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    onError={(e) => {
+                      e.currentTarget.src = "/placeholder.svg";
+                    }}
                   />
                   <div className="absolute top-4 right-4 flex gap-2">
                     {project.github && (

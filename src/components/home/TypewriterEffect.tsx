@@ -22,20 +22,20 @@ export const TypewriterEffect = ({
 
   useEffect(() => {
     let delay = 0;
-    const animationSequence = [];
+    const sequence = [];
     
     // Create show and hide animations for each word
     words.forEach((word, i) => {
       // Show the word
-      animationSequence.push([
-        scope.current.querySelector(`.word-${i}`),
+      sequence.push([
+        `.word-${i}`,
         { opacity: 1 },
         { duration: 0.25, delay }
       ]);
       
       // Hide the word
-      animationSequence.push([
-        scope.current.querySelector(`.word-${i}`),
+      sequence.push([
+        `.word-${i}`,
         { opacity: 0 },
         { duration: 0.25, delay: 0.75 + delay }
       ]);
@@ -44,13 +44,13 @@ export const TypewriterEffect = ({
     });
 
     // Add cursor animation at the end
-    animationSequence.push([
-      scope.current.querySelector(".cursor"),
+    sequence.push([
+      ".cursor",
       { opacity: 0 },
       { duration: 0.25, delay }
     ]);
 
-    animate(animationSequence);
+    animate(sequence);
   }, [animate, scope, words]);
 
   return (
