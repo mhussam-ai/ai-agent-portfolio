@@ -1,6 +1,6 @@
 
 import { motion, useAnimate } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 interface Word {
   text: string;
@@ -28,43 +28,36 @@ export const TypewriterEffect = ({
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Clear any existing timer when component unmounts
   useEffect(() => {
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    };
-  }, []);
-  
-  useEffect(() => {
+    let timerId: ReturnType<typeof setTimeout>;
+    
     if (!words.length) return;
     
     const currentWord = words[currentWordIndex].text;
     
-    // Handle typing
+    // Typing state
     if (isTyping && !isPaused) {
       if (currentText.length < currentWord.length) {
         // Still typing the current word
-        timerRef.current = setTimeout(() => {
+        timerId = setTimeout(() => {
           setCurrentText(currentWord.substring(0, currentText.length + 1));
         }, typingSpeed);
       } else {
-        // Finished typing the current word, pause before backspacing
+        // Finished typing, pause before backspacing
         setIsPaused(true);
-        timerRef.current = setTimeout(() => {
+        timerId = setTimeout(() => {
           setIsPaused(false);
           setIsTyping(false);
         }, pauseDuration);
       }
     }
-    // Handle backspacing
+    // Backspacing state
     else if (!isTyping && !isPaused) {
       if (currentText.length > 0) {
         // Still backspacing
-        timerRef.current = setTimeout(() => {
+        timerId = setTimeout(() => {
           setCurrentText(currentText.substring(0, currentText.length - 1));
         }, backspaceSpeed);
       } else {
@@ -73,6 +66,10 @@ export const TypewriterEffect = ({
         setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
       }
     }
+    
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [currentText, currentWordIndex, isTyping, isPaused, words, typingSpeed, backspaceSpeed, pauseDuration]);
 
   return (
@@ -81,7 +78,7 @@ export const TypewriterEffect = ({
         {currentText}
       </span>
       <motion.span
-        className={`cursor w-[4px] h-10 md:h-12 inline-block bg-primary ml-1 ${cursorClassName}`}
+        className={`ml-1 inline-block w-[4px] h-6 md:h-8 ${cursorClassName}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
