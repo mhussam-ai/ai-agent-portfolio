@@ -57,6 +57,11 @@ export const HomepageHero = () => {
             {/* Hero Content - Left Side */}
             <div className="lg:col-span-7">
               <HeroContent typewriterWords={words} />
+              
+              {/* Mobile Scroll Down Indicator - Positioned before social links */}
+              <div className="lg:hidden mt-6 mb-4 flex justify-center">
+                <ScrollIndicator onClick={handleScrollDown} />
+              </div>
             </div>
             
             {/* Profile Image - Desktop (Right Side) */}
@@ -72,13 +77,8 @@ export const HomepageHero = () => {
         </div>
       </div>
       
-      {/* Mobile Scroll Down Indicator (positioned within content flow) */}
-      <div className="lg:hidden mt-4 mb-6 w-full flex justify-center">
-        <ScrollIndicator onClick={handleScrollDown} />
-      </div>
-      
-      {/* Desktop Scroll Down Indicator (positioned absolutely) */}
-      <div className="hidden lg:block">
+      {/* Desktop Scroll Down Indicator (positioned absolutely at bottom) */}
+      <div className="hidden lg:block absolute bottom-8 left-0 right-0 mx-auto w-max">
         <ScrollIndicator onClick={handleScrollDown} />
       </div>
     </section>
