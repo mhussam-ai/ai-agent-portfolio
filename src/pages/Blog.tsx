@@ -13,31 +13,49 @@ const Blog = () => {
   const posts = [
     {
       id: 1,
-      title: "Building Ethical AI Agents: Best Practices",
-      excerpt: "How to develop AI agents that are not only effective but also ethical and transparent in their decision-making processes.",
+      title: "The Future of AI Agents in Customer Service",
+      excerpt: "An in-depth exploration of how AI agents are revolutionizing customer support, with real case studies and implementation strategies for businesses looking to enhance their service capabilities.",
       date: "2025-04-15",
       readTime: "8 min read",
-      categories: ["AI Ethics", "Development"],
-      image: "https://via.placeholder.com/600x300"
+      categories: ["AI Ethics", "Customer Service"],
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&q=80&auto=format&fit=crop"
     },
     {
       id: 2,
-      title: "Fine-tuning LLMs for Domain-Specific Applications",
-      excerpt: "A comprehensive guide to fine-tuning large language models to perform exceptionally well in specialized domains and industries.",
+      title: "Mastering LLM Fine-tuning: A Developer's Guide",
+      excerpt: "Practical insights and step-by-step instructions for developers looking to fine-tune large language models for specific industry applications, including code examples and best practices.",
       date: "2025-04-10",
       readTime: "12 min read",
-      categories: ["Machine Learning", "LLMs"],
-      image: "https://via.placeholder.com/600x300"
+      categories: ["Machine Learning", "Development"],
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80&auto=format&fit=crop"
     },
     {
       id: 3,
-      title: "Creating Responsive UIs for AI Applications",
-      excerpt: "Design strategies and implementation techniques for building interfaces that effectively present AI capabilities to users.",
+      title: "Building Human-Centric AI Interfaces",
+      excerpt: "Learn the principles of designing intuitive and accessible user interfaces for AI-powered applications, focusing on user experience and ethical considerations.",
       date: "2025-04-05",
       readTime: "6 min read",
-      categories: ["UI/UX", "Frontend"],
-      image: "https://via.placeholder.com/600x300"
+      categories: ["UI/UX", "AI Ethics"],
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80&auto=format&fit=crop"
     },
+    {
+      id: 4,
+      title: "The Rise of Autonomous AI Agents",
+      excerpt: "Exploring the evolution of autonomous AI agents and their impact on various industries, from customer service to complex decision-making systems.",
+      date: "2025-04-01",
+      readTime: "10 min read",
+      categories: ["AI", "Automation"],
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop"
+    },
+    {
+      id: 5,
+      title: "Ethical Considerations in AI Development",
+      excerpt: "A comprehensive guide to implementing ethical principles in AI development, ensuring transparency, fairness, and accountability in your AI systems.",
+      date: "2025-03-28",
+      readTime: "15 min read",
+      categories: ["AI Ethics", "Development"],
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80&auto=format&fit=crop"
+    }
   ];
 
   const filteredPosts = posts.filter(post =>
@@ -68,7 +86,7 @@ const Blog = () => {
       initial="hidden"
       animate="show"
     >
-      <motion.h1 variants={item} className="text-4xl font-bold mb-8">Blog</motion.h1>
+      <motion.h1 variants={item} className="text-4xl font-bold mb-8">Latest Articles</motion.h1>
       
       <motion.div variants={item} className="mb-8 relative max-w-md mx-auto">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
