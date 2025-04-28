@@ -8,7 +8,7 @@ interface ScrollIndicatorProps {
 
 export const ScrollIndicator = ({ onClick }: ScrollIndicatorProps) => (
   <motion.div 
-    className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center cursor-pointer"
+    className="absolute bottom-8 left-0 right-0 mx-auto w-max flex flex-col items-center cursor-pointer"
     initial={{ opacity: 0, y: -20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 1, duration: 0.8 }}

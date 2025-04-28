@@ -4,8 +4,11 @@ import { ProfileImage } from "./hero/ProfileImage";
 import { SocialLinks } from "./hero/SocialLinks";
 import { HeroContent } from "./hero/HeroContent";
 import { ScrollIndicator } from "./hero/ScrollIndicator";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const HomepageHero = () => {
+  const isMobile = useIsMobile();
+  
   const words = [
     { text: "AI Specialist" },
     { text: "Agent Developer" },
@@ -26,8 +29,8 @@ export const HomepageHero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center py-16 md:py-24 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <section className="relative min-h-[100dvh] flex flex-col justify-center py-16 md:py-24 px-4">
+      <div className="container mx-auto max-w-6xl pt-16 md:pt-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Social Media Links - Left Side (Desktop) */}
           <motion.div 
