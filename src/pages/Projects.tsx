@@ -5,6 +5,7 @@ import { ProjectsHero } from "@/components/projects/ProjectsHero";
 import { ProjectsHeader } from "@/components/projects/ProjectsHeader";
 import { ProjectTabs } from "@/components/projects/ProjectTabs";
 import { useProjectsData } from "@/components/projects/useProjectsData";
+import { ProjectDetail } from "@/components/projects/ProjectDetail";
 
 const Projects = () => {
   const {
@@ -62,6 +63,13 @@ const Projects = () => {
             selectedSkills={selectedSkills}
           />
         </div>
+        
+        {featuredProject && (
+          <ProjectDetail 
+            project={projects.find(p => p.title === featuredProject)!}
+            onClose={() => setFeaturedProject(null)}
+          />
+        )}
       </div>
     </div>
   );
