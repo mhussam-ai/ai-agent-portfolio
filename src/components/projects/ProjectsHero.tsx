@@ -44,7 +44,7 @@ export const ProjectsHero = ({
       }} transition={{
         duration: 0.6,
         delay: 0.1
-      }}>
+      }} className="py-[48px]">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-hover">
               Featured Projects
