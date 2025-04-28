@@ -21,6 +21,7 @@ const LazyProjects = lazy(() => import("./pages/Projects"));
 const LazyBlog = lazy(() => import("./pages/Blog"));
 const LazyContact = lazy(() => import("./pages/Contact"));
 const LazySkills = lazy(() => import("./pages/Skills"));
+const LazyBlogPost = lazy(() => import("./pages/BlogPost"));
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,11 @@ const AnimatedRoutes = () => {
         <Route path="/blog" element={
           <Suspense fallback={<PageLoader />}>
             <LazyBlog />
+          </Suspense>
+        } />
+        <Route path="/blog/:slug" element={
+          <Suspense fallback={<PageLoader />}>
+            <LazyBlogPost />
           </Suspense>
         } />
         <Route path="/contact" element={
