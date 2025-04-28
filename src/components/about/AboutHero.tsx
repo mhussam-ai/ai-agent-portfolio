@@ -1,11 +1,11 @@
-
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-
 export const AboutHero = () => {
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {
+      opacity: 0
+    },
     show: {
       opacity: 1,
       transition: {
@@ -14,11 +14,13 @@ export const AboutHero = () => {
       }
     }
   };
-
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    show: { 
-      y: 0, 
+    hidden: {
+      y: 20,
+      opacity: 0
+    },
+    show: {
+      y: 0,
       opacity: 1,
       transition: {
         type: "spring",
@@ -27,17 +29,8 @@ export const AboutHero = () => {
       }
     }
   };
-
-  const skills = [
-    "AI Specialist",
-    "Agent Development",
-    "Voice AI",
-    "RAG",
-    "ML Engineering"
-  ];
-
-  return (
-    <div className="relative overflow-hidden">
+  const skills = ["AI Specialist", "Agent Development", "Voice AI", "RAG", "ML Engineering"];
+  return <div className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-primary-50/50 to-primary-100/50 dark:from-primary/10 dark:to-primary-900/20 opacity-50" />
       
       {/* Decorative elements */}
@@ -45,16 +38,8 @@ export const AboutHero = () => {
       <div className="absolute bottom-10 left-10 w-48 h-48 bg-primary-100/20 rounded-full blur-2xl" />
       
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
-        <motion.div 
-          className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12 max-w-6xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-        >
-          <motion.div 
-            className="flex-shrink-0"
-            variants={itemVariants}
-          >
+        <motion.div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12 max-w-6xl mx-auto" variants={containerVariants} initial="hidden" animate="show">
+          <motion.div variants={itemVariants} className="flex-shrink-0 py-px">
             <Avatar className="h-32 w-32 md:h-48 md:w-48 border-4 border-white/90 shadow-xl">
               <AvatarImage src="/placeholder.svg" alt="Mohammad Hussam" />
               <AvatarFallback className="text-3xl font-bold bg-primary/20 text-primary">MH</AvatarFallback>
@@ -68,34 +53,29 @@ export const AboutHero = () => {
               </h1>
               
               <div className="flex flex-wrap gap-2 mt-3">
-                {skills.map((skill, index) => (
-                  <motion.div 
-                    key={skill}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 + (index * 0.1) }}
-                  >
+                {skills.map((skill, index) => <motion.div key={skill} initial={{
+                opacity: 0,
+                y: 20
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                delay: 0.5 + index * 0.1
+              }}>
                     <Badge className="bg-primary/10 hover:bg-primary/20 text-primary border-primary/30 text-sm py-1 px-3">
                       {skill}
                     </Badge>
-                  </motion.div>
-                ))}
+                  </motion.div>)}
               </div>
             </motion.div>
             
-            <motion.p 
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl"
-              variants={itemVariants}
-            >
+            <motion.p className="text-lg md:text-xl text-muted-foreground max-w-2xl" variants={itemVariants}>
               AI Specialist with expertise in agentic systems, voice interfaces, and machine learning, 
               utilizing tools like LangChain, Crew AI, Agno, and PydanticAI. Experienced mentor, 
               hackathon participant, and continuous learner in MCP, RAG and LLM deployment.
             </motion.p>
             
-            <motion.div
-              className="flex items-center gap-2 text-primary"
-              variants={itemVariants}
-            >
+            <motion.div className="flex items-center gap-2 text-primary" variants={itemVariants}>
               <span className="text-sm font-medium flex items-center">
                 📧 mohammadhussam.ai@gmail.com
               </span>
@@ -107,6 +87,5 @@ export const AboutHero = () => {
           </motion.div>
         </motion.div>
       </div>
-    </div>
-  );
+    </div>;
 };
