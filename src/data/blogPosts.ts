@@ -6,8 +6,10 @@ import { answerEnginePost } from "./blog-posts/answer-engine-optimization";
 import { technicalSeoPost } from "./blog-posts/technical-seo-fundamentals";
 import { contentOptimizationPost } from "./blog-posts/content-optimization";
 import { localSeoPost } from "./blog-posts/local-seo-strategies";
+import { aiAgentsEnterprisePost } from "./blog-posts/ai-agents-enterprise";
 
 export const blogPosts: BlogPost[] = [
+  aiAgentsEnterprisePost,
   aiAgentsPost,
   seoGuidePost,
   answerEnginePost,
