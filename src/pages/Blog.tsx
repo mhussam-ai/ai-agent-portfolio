@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
@@ -6,6 +5,7 @@ import { BlogCard } from "@/components/blog/BlogCard";
 import { SearchBar } from "@/components/blog/SearchBar";
 import { NoResults } from "@/components/blog/NoResults";
 import { blogPosts } from "@/data/blogPosts";
+import { Badge } from "@/components/ui/badge";
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,6 +24,11 @@ const Blog = () => {
         staggerChildren: 0.1
       }
     }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
   };
 
   return (
@@ -59,15 +64,42 @@ const Blog = () => {
         initial="hidden"
         animate="show"
       >
-        <motion.h1 
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            show: { opacity: 1, y: 0 }
-          }} 
-          className="text-4xl font-bold mb-8"
-        >
-          Latest Articles
-        </motion.h1>
+        <div className="relative overflow-hidden mb-16">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 opacity-50" />
+          <motion.div 
+            className="relative z-10 max-w-4xl mx-auto text-center py-12"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.h1 
+              variants={item}
+              className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-hover"
+            >
+              AI & Tech Insights
+            </motion.h1>
+            <motion.p 
+              variants={item}
+              className="text-lg md:text-xl text-muted-foreground mb-6"
+            >
+              Exploring the intersection of AI, Machine Learning, and Modern Development
+            </motion.p>
+            <motion.div 
+              variants={item}
+              className="flex flex-wrap justify-center gap-3"
+            >
+              <Badge variant="secondary" className="text-sm py-1.5 px-4">
+                AI Development
+              </Badge>
+              <Badge variant="secondary" className="text-sm py-1.5 px-4">
+                Technical Insights
+              </Badge>
+              <Badge variant="secondary" className="text-sm py-1.5 px-4">
+                Best Practices
+              </Badge>
+            </motion.div>
+          </motion.div>
+        </div>
         
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
