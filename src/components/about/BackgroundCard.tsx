@@ -1,14 +1,16 @@
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Briefcase, ChevronDown, ChevronUp } from "lucide-react";
+import { Briefcase, ChevronDown, ChevronUp, Sparkles, BookOpen, Brain } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const skills = [
-  "LLM Engineering", "Voice AI", "Machine Learning", "Agent Development",
-  "TensorFlow", "PyTorch", "LangChain", "RAG", "NLP", "Computer Vision"
+  "LangChain", "PydanticAI", "Agno", "Crew AI", "RAG", 
+  "TensorFlow", "PyTorch", "Voice AI", "LLM Engineering", 
+  "Neural Networks", "NLP", "Computer Vision"
 ];
 
 interface BackgroundCardProps {
@@ -61,52 +63,73 @@ export const BackgroundCard = ({ isMobile, expandedSection, toggleSection }: Bac
               </div>
             </CollapsibleTrigger>
             
-            <CollapsibleContent className="mt-6 space-y-4">
-              <div className="space-y-4 text-base md:text-lg prose dark:prose-invert max-w-none">
-                <p className="leading-relaxed">
-                  I'm an AI Specialist with expertise in developing agentic systems and voice interfaces. 
-                  My work with LangChain, Crew AI, and Pydantic has achieved significant results, including 
-                  91% accuracy in satellite imagery analysis.
-                </p>
-                <p className="leading-relaxed">
-                  As a Data Science Trainee at Bompix Mori IT Solutions, I implemented TensorFlow forecasting 
-                  pipelines that reduced forecasting errors by 15%. Previously, at Spartificial Innovations, 
-                  I led a team developing ML models for satellite imagery analysis.
-                </p>
+            <CollapsibleContent className="mt-6 space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  <h3 className="text-lg font-semibold">Summary</h3>
+                </div>
+                <div className="text-base md:text-lg prose dark:prose-invert max-w-none">
+                  <p className="leading-relaxed">
+                    I'm an AI Specialist with expertise in developing agentic systems and voice interfaces. 
+                    My work with LangChain, Crew AI, and PydanticAI has achieved significant results, including 
+                    91% accuracy in satellite imagery analysis.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <BookOpen className="h-5 w-5 text-primary" />
+                  <h3 className="text-lg font-semibold">Experience</h3>
+                </div>
+                <div className="text-base md:text-lg prose dark:prose-invert max-w-none">
+                  <p className="leading-relaxed">
+                    As a Data Science Trainee at Bompix Mori IT Solutions, I implemented TensorFlow forecasting 
+                    pipelines that reduced forecasting errors by 15%. Previously, at Spartificial Innovations, 
+                    I led a team developing ML models for satellite imagery analysis.
+                  </p>
+                </div>
               </div>
               
-              <div className="flex flex-wrap gap-2 mt-6">
-                {skills.slice(0, expanded ? skills.length : 4).map((skill) => (
-                  <Badge 
-                    key={skill} 
-                    variant="outline" 
-                    className="bg-primary/5 hover:bg-primary/20 py-1.5 px-3 text-sm transition-colors duration-200"
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <Brain className="h-5 w-5 text-primary" />
+                  <h3 className="text-lg font-semibold">Technical Expertise</h3>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {skills.slice(0, expanded ? skills.length : 4).map((skill) => (
+                    <Badge 
+                      key={skill} 
+                      variant="outline" 
+                      className="bg-primary/5 hover:bg-primary/20 py-1.5 px-3 text-sm transition-colors duration-200"
+                    >
+                      {skill}
+                    </Badge>
+                  ))}
+                  
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="flex items-center gap-1 hover:bg-primary/10"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleExpanded();
+                    }}
                   >
-                    {skill}
-                  </Badge>
-                ))}
-                
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="flex items-center gap-1 hover:bg-primary/10"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleExpanded();
-                  }}
-                >
-                  {expanded ? (
-                    <>
-                      <ChevronUp className="h-4 w-4" />
-                      <span>Show Less</span>
-                    </>
-                  ) : (
-                    <>
-                      <ChevronDown className="h-4 w-4" />
-                      <span>Show More</span>
-                    </>
-                  )}
-                </Button>
+                    {expanded ? (
+                      <>
+                        <ChevronUp className="h-4 w-4" />
+                        <span>Show Less</span>
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="h-4 w-4" />
+                        <span>Show More</span>
+                      </>
+                    )}
+                  </Button>
+                </div>
               </div>
             </CollapsibleContent>
           </div>
@@ -131,48 +154,71 @@ export const BackgroundCard = ({ isMobile, expandedSection, toggleSection }: Bac
             </h2>
           </div>
           
-          <div className="space-y-6 text-lg prose dark:prose-invert max-w-none">
-            <p className="leading-relaxed">
-              I'm an AI Specialist with expertise in developing agentic systems and voice interfaces. 
-              My work with LangChain, Crew AI, and Pydantic has achieved significant results, including 
-              91% accuracy in satellite imagery analysis.
-            </p>
-            <p className="leading-relaxed">
-              As a Data Science Trainee at Bompix Mori IT Solutions, I implemented TensorFlow forecasting 
-              pipelines that reduced forecasting errors by 15%. Previously, at Spartificial Innovations, 
-              I led a team developing ML models for satellite imagery analysis.
-            </p>
-          </div>
-          
-          <div className="flex flex-wrap gap-2 mt-8">
-            {skills.slice(0, expanded ? skills.length : 4).map((skill) => (
-              <Badge 
-                key={skill} 
-                variant="outline" 
-                className="bg-primary/5 hover:bg-primary/20 py-1.5 px-3 text-sm transition-colors duration-200"
-              >
-                {skill}
-              </Badge>
-            ))}
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-primary" />
+                <h3 className="text-xl font-semibold">Summary</h3>
+              </div>
+              <div className="text-lg prose dark:prose-invert max-w-none">
+                <p className="leading-relaxed">
+                  I'm an AI Specialist with expertise in developing agentic systems and voice interfaces. 
+                  My work with LangChain, Crew AI, and PydanticAI has achieved significant results, including 
+                  91% accuracy in satellite imagery analysis.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <BookOpen className="h-5 w-5 text-primary" />
+                <h3 className="text-xl font-semibold">Experience</h3>
+              </div>
+              <div className="text-lg prose dark:prose-invert max-w-none">
+                <p className="leading-relaxed">
+                  As a Data Science Trainee at Bompix Mori IT Solutions, I implemented TensorFlow forecasting 
+                  pipelines that reduced forecasting errors by 15%. Previously, at Spartificial Innovations, 
+                  I led a team developing ML models for satellite imagery analysis.
+                </p>
+              </div>
+            </div>
             
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="flex items-center gap-1 hover:bg-primary/10"
-              onClick={toggleExpanded}
-            >
-              {expanded ? (
-                <>
-                  <ChevronUp className="h-4 w-4" />
-                  <span>Show Less</span>
-                </>
-              ) : (
-                <>
-                  <ChevronDown className="h-4 w-4" />
-                  <span>Show More</span>
-                </>
-              )}
-            </Button>
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Brain className="h-5 w-5 text-primary" />
+                <h3 className="text-xl font-semibold">Technical Expertise</h3>
+              </div>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {skills.slice(0, expanded ? skills.length : 6).map((skill) => (
+                  <Badge 
+                    key={skill} 
+                    variant="outline" 
+                    className="bg-primary/5 hover:bg-primary/20 py-1.5 px-3 text-sm transition-colors duration-200"
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+                
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="flex items-center gap-1 hover:bg-primary/10"
+                  onClick={toggleExpanded}
+                >
+                  {expanded ? (
+                    <>
+                      <ChevronUp className="h-4 w-4" />
+                      <span>Show Less</span>
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="h-4 w-4" />
+                      <span>Show More</span>
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </Card>
