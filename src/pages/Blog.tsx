@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search, Calendar, Clock } from "lucide-react";
@@ -5,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,43 +24,53 @@ const Blog = () => {
     },
     {
       id: 2,
-      slug: "mastering-llm-fine-tuning",
-      title: "Mastering LLM Fine-tuning: A Developer's Guide",
-      excerpt: "Practical insights and step-by-step instructions for developers looking to fine-tune large language models for specific industry applications, including code examples and best practices.",
+      slug: "complete-guide-to-search-engine-optimization-2025",
+      title: "Complete Guide to Search Engine Optimization in 2025",
+      excerpt: "An extensive guide to modern SEO practices in 2025, covering everything from technical fundamentals to advanced AI-powered strategies, complete with actionable steps and case studies.",
       date: "2025-04-10",
       readTime: "12 min read",
-      categories: ["Machine Learning", "Development"],
+      categories: ["SEO", "Digital Marketing"],
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80&auto=format&fit=crop"
     },
     {
       id: 3,
-      slug: "building-human-centric-ai-interfaces",
-      title: "Building Human-Centric AI Interfaces",
+      slug: "answer-engine-optimization-future-of-search",
+      title: "Answer Engine Optimization: The Future of Search",
       excerpt: "Learn the principles of designing intuitive and accessible user interfaces for AI-powered applications, focusing on user experience and ethical considerations.",
       date: "2025-04-05",
-      readTime: "6 min read",
-      categories: ["UI/UX", "AI Ethics"],
+      readTime: "10 min read",
+      categories: ["AI Search", "SEO"],
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80&auto=format&fit=crop"
     },
     {
       id: 4,
-      slug: "rise-of-autonomous-ai-agents",
-      title: "The Rise of Autonomous AI Agents",
+      slug: "technical-seo-fundamentals-modern-websites",
+      title: "Technical SEO Fundamentals for Modern Websites",
       excerpt: "Exploring the evolution of autonomous AI agents and their impact on various industries, from customer service to complex decision-making systems.",
       date: "2025-04-01",
-      readTime: "10 min read",
-      categories: ["AI", "Automation"],
+      readTime: "11 min read",
+      categories: ["Technical SEO", "Web Development"],
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop"
     },
     {
       id: 5,
-      slug: "ethical-considerations-in-ai-development",
-      title: "Ethical Considerations in AI Development",
+      slug: "content-optimization-ai-powered-search",
+      title: "Content Optimization for AI-Powered Search",
       excerpt: "A comprehensive guide to implementing ethical principles in AI development, ensuring transparency, fairness, and accountability in your AI systems.",
       date: "2025-03-28",
-      readTime: "15 min read",
-      categories: ["AI Ethics", "Development"],
+      readTime: "9 min read",
+      categories: ["AI Search", "Content Strategy"],
       image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80&auto=format&fit=crop"
+    },
+    {
+      id: 6,
+      slug: "local-seo-strategies-2025",
+      title: "Local SEO Strategies for 2025",
+      excerpt: "A detailed guide to implementing effective local SEO strategies in 2025, including Google Business Profile optimization, local content creation, citation building, and schema markup techniques.",
+      date: "2025-03-20",
+      readTime: "12 min read",
+      categories: ["Local SEO", "Business Growth"],
+      image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80&auto=format&fit=crop"
     }
   ];
 
@@ -84,91 +96,118 @@ const Blog = () => {
   };
 
   return (
-    <motion.div 
-      className="container mx-auto px-4 py-20"
-      variants={container}
-      initial="hidden"
-      animate="show"
-    >
-      <motion.h1 variants={item} className="text-4xl font-bold mb-8">Latest Articles</motion.h1>
-      
-      <motion.div variants={item} className="mb-8 relative max-w-md mx-auto">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
-        <Input 
-          placeholder="Search articles..." 
-          className="pl-10 focus-visible:ring-primary"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </motion.div>
+    <>
+      <Helmet>
+        <title>Blog - SEO & Digital Marketing Insights | Mohammad Hussam</title>
+        <meta name="description" content="Explore expert insights on SEO, Answer Engine Optimization, Technical SEO, AI Search, and Digital Marketing strategies from Mohammad Hussam." />
+        <meta property="og:title" content="Blog - SEO & Digital Marketing Insights | Mohammad Hussam" />
+        <meta property="og:description" content="Explore expert insights on SEO, Answer Engine Optimization, Technical SEO, AI Search, and Digital Marketing strategies from Mohammad Hussam." />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://example.com/blog" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Blog",
+              "name": "Mohammad Hussam Blog",
+              "description": "Expert insights on SEO, Answer Engine Optimization, Technical SEO, AI Search, and Digital Marketing",
+              "url": "https://example.com/blog",
+              "publisher": {
+                "@type": "Person",
+                "name": "Mohammad Hussam"
+              }
+            }
+          `}
+        </script>
+      </Helmet>
 
-      {filteredPosts.length > 0 ? (
-        <motion.div 
-          className="grid gap-8"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          {filteredPosts.map((post) => (
-            <motion.div 
-              key={post.id} 
-              variants={item}
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Link to={`/blog/${post.slug}`} className="block">
-                <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-transparent hover:border-primary/20">
-                  <div className="md:flex">
-                    <div className="md:w-1/3 overflow-hidden">
-                      <motion.img 
-                        src={post.image} 
-                        alt={post.title} 
-                        className="h-full w-full object-cover"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.5 }}
-                      />
-                    </div>
-                    <div className="md:w-2/3">
-                      <CardHeader>
-                        <div className="flex flex-wrap gap-2 mb-2">
-                          {post.categories.map(category => (
-                            <Badge key={category} variant="secondary" className="hover:bg-primary hover:text-white transition-all">
-                              {category}
-                            </Badge>
-                          ))}
-                        </div>
-                        <CardTitle className="text-2xl font-semibold group">
-                          <span className="bg-gradient-to-r from-foreground to-foreground bg-[length:0%_1px] group-hover:bg-[length:100%_1px] bg-left-bottom bg-no-repeat transition-all duration-500">
-                            {post.title}
+      <motion.div 
+        className="container mx-auto px-4 py-20"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.h1 variants={item} className="text-4xl font-bold mb-8">Latest Articles</motion.h1>
+        
+        <motion.div variants={item} className="mb-8 relative max-w-md mx-auto">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
+          <Input 
+            placeholder="Search articles..." 
+            className="pl-10 focus-visible:ring-primary"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </motion.div>
+
+        {filteredPosts.length > 0 ? (
+          <motion.div 
+            className="grid gap-8"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            {filteredPosts.map((post) => (
+              <motion.div 
+                key={post.id} 
+                variants={item}
+                whileHover={{ y: -5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Link to={`/blog/${post.slug}`} className="block">
+                  <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-transparent hover:border-primary/20">
+                    <div className="md:flex">
+                      <div className="md:w-1/3 overflow-hidden">
+                        <motion.img 
+                          src={post.image} 
+                          alt={post.title} 
+                          className="h-full w-full object-cover"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.5 }}
+                        />
+                      </div>
+                      <div className="md:w-2/3">
+                        <CardHeader>
+                          <div className="flex flex-wrap gap-2 mb-2">
+                            {post.categories.map(category => (
+                              <Badge key={category} variant="secondary" className="hover:bg-primary hover:text-white transition-all">
+                                {category}
+                              </Badge>
+                            ))}
+                          </div>
+                          <CardTitle className="text-2xl font-semibold group">
+                            <span className="bg-gradient-to-r from-foreground to-foreground bg-[length:0%_1px] group-hover:bg-[length:100%_1px] bg-left-bottom bg-no-repeat transition-all duration-500">
+                              {post.title}
+                            </span>
+                          </CardTitle>
+                          <CardDescription className="flex gap-4 text-sm items-center">
+                            <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {post.date}</span>
+                            <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-muted-foreground line-clamp-2">{post.excerpt}</p>
+                        </CardContent>
+                        <CardFooter>
+                          <span className="text-primary flex items-center group">
+                            Read More 
+                            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
                           </span>
-                        </CardTitle>
-                        <CardDescription className="flex gap-4 text-sm items-center">
-                          <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {post.date}</span>
-                          <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-muted-foreground line-clamp-2">{post.excerpt}</p>
-                      </CardContent>
-                      <CardFooter>
-                        <span className="text-primary flex items-center group">
-                          Read More 
-                          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-                        </span>
-                      </CardFooter>
+                        </CardFooter>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
-      ) : (
-        <motion.div variants={item} className="text-center py-16">
-          <p className="text-xl text-muted-foreground">No articles found matching your search.</p>
-        </motion.div>
-      )}
-    </motion.div>
+                  </Card>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div variants={item} className="text-center py-16">
+            <p className="text-xl text-muted-foreground">No articles found matching your search.</p>
+          </motion.div>
+        )}
+      </motion.div>
+    </>
   );
 };
 
