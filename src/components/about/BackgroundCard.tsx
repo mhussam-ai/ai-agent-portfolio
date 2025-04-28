@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
@@ -23,6 +22,17 @@ export const BackgroundCard = ({ isMobile, expandedSection, toggleSection }: Bac
   
   const toggleExpanded = () => {
     setExpanded(!expanded);
+  };
+
+  const cardVariants = {
+    hover: {
+      boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 20
+      }
+    }
   };
 
   if (isMobile) {
@@ -106,61 +116,66 @@ export const BackgroundCard = ({ isMobile, expandedSection, toggleSection }: Bac
   }
 
   return (
-    <Card className="group overflow-hidden border-none shadow-lg bg-gradient-to-br from-primary/5 via-background to-background hover:shadow-xl transition-all duration-300">
-      <div className="border-l-4 border-primary p-6 md:p-8">
-        <div className="flex items-start gap-4 mb-6">
-          <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
-            <Briefcase className="h-6 w-6 text-primary" />
+    <motion.div
+      variants={cardVariants}
+      whileHover="hover"
+    >
+      <Card className="group overflow-hidden border-none shadow-lg bg-gradient-to-br from-primary/5 via-background to-background transition-all duration-300">
+        <div className="border-l-4 border-primary p-6 md:p-8">
+          <div className="flex items-start gap-4 mb-6">
+            <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
+              <Briefcase className="h-6 w-6 text-primary" />
+            </div>
+            <h2 className="text-3xl font-bold text-primary">
+              Professional Background
+            </h2>
           </div>
-          <h2 className="text-3xl font-bold text-primary">
-            Professional Background
-          </h2>
-        </div>
-        
-        <div className="space-y-6 text-lg prose dark:prose-invert max-w-none">
-          <p className="leading-relaxed">
-            I'm an AI Specialist with expertise in developing agentic systems and voice interfaces. 
-            My work with LangChain, Crew AI, and Pydantic has achieved significant results, including 
-            91% accuracy in satellite imagery analysis.
-          </p>
-          <p className="leading-relaxed">
-            As a Data Science Trainee at Bompix Mori IT Solutions, I implemented TensorFlow forecasting 
-            pipelines that reduced forecasting errors by 15%. Previously, at Spartificial Innovations, 
-            I led a team developing ML models for satellite imagery analysis.
-          </p>
-        </div>
-        
-        <div className="flex flex-wrap gap-2 mt-8">
-          {skills.slice(0, expanded ? skills.length : 4).map((skill) => (
-            <Badge 
-              key={skill} 
-              variant="outline" 
-              className="bg-primary/5 hover:bg-primary/20 py-1.5 px-3 text-sm transition-colors duration-200"
-            >
-              {skill}
-            </Badge>
-          ))}
           
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="flex items-center gap-1 hover:bg-primary/10"
-            onClick={toggleExpanded}
-          >
-            {expanded ? (
-              <>
-                <ChevronUp className="h-4 w-4" />
-                <span>Show Less</span>
-              </>
-            ) : (
-              <>
-                <ChevronDown className="h-4 w-4" />
-                <span>Show More</span>
-              </>
-            )}
-          </Button>
+          <div className="space-y-6 text-lg prose dark:prose-invert max-w-none">
+            <p className="leading-relaxed">
+              I'm an AI Specialist with expertise in developing agentic systems and voice interfaces. 
+              My work with LangChain, Crew AI, and Pydantic has achieved significant results, including 
+              91% accuracy in satellite imagery analysis.
+            </p>
+            <p className="leading-relaxed">
+              As a Data Science Trainee at Bompix Mori IT Solutions, I implemented TensorFlow forecasting 
+              pipelines that reduced forecasting errors by 15%. Previously, at Spartificial Innovations, 
+              I led a team developing ML models for satellite imagery analysis.
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap gap-2 mt-8">
+            {skills.slice(0, expanded ? skills.length : 4).map((skill) => (
+              <Badge 
+                key={skill} 
+                variant="outline" 
+                className="bg-primary/5 hover:bg-primary/20 py-1.5 px-3 text-sm transition-colors duration-200"
+              >
+                {skill}
+              </Badge>
+            ))}
+            
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="flex items-center gap-1 hover:bg-primary/10"
+              onClick={toggleExpanded}
+            >
+              {expanded ? (
+                <>
+                  <ChevronUp className="h-4 w-4" />
+                  <span>Show Less</span>
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="h-4 w-4" />
+                  <span>Show More</span>
+                </>
+              )}
+            </Button>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </motion.div>
   );
 };

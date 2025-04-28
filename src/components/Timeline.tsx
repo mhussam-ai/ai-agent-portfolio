@@ -26,20 +26,47 @@ const timelineEvents = [
 ];
 
 export const Timeline = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { x: -20, opacity: 0 },
+    show: { 
+      x: 0, 
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  };
+
   return (
     <section className="mb-12">
       <div className="flex items-center gap-2 mb-6">
         <Calendar className="h-5 w-5 text-primary" />
         <h2 className="text-2xl font-semibold">Timeline</h2>
       </div>
-      <div className="relative space-y-8">
+      <motion.div 
+        className="relative space-y-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
         {timelineEvents.map((event, index) => (
           <motion.div
             key={index}
             className="relative pl-8 border-l border-border"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
+            variants={itemVariants}
+            whileHover={{ x: 5 }}
           >
             <div className="absolute left-[-5px] top-2 h-2.5 w-2.5 rounded-full bg-primary" />
             <div className="relative">
@@ -49,7 +76,7 @@ export const Timeline = () => {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
