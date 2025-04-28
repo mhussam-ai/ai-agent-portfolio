@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "./theme-provider";
 import { Button } from "./ui/button";
@@ -43,10 +42,13 @@ export const Navigation = () => {
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
           <Link to="/" className="flex items-center gap-2 text-xl font-semibold hover:text-primary transition-colors">
-            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-              MH
+            <div className="h-10">
+              <img 
+                src="/lovable-uploads/624f4d9c-b619-4795-8bb5-d7de587b9b2f.png" 
+                alt="Mohammad Hussam ul Islam" 
+                className="h-full" 
+              />
             </div>
-            <span className="hidden sm:inline-block">Mohammad Hussam</span>
           </Link>
         </motion.div>
         
