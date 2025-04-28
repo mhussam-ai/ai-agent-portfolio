@@ -22,30 +22,35 @@ export const TypewriterEffect = ({
 
   useEffect(() => {
     let delay = 0;
+    const animationSequence = [];
     
-    const animations = words.flatMap((word, i) => {
-      const showWord = [
+    // Create show and hide animations for each word
+    words.forEach((word, i) => {
+      // Show the word
+      animationSequence.push([
         scope.current.querySelector(`.word-${i}`),
         { opacity: 1 },
         { duration: 0.25, delay }
-      ];
+      ]);
       
-      const hideWord = [
+      // Hide the word
+      animationSequence.push([
         scope.current.querySelector(`.word-${i}`),
         { opacity: 0 },
         { duration: 0.25, delay: 0.75 + delay }
-      ];
+      ]);
       
       delay += 1;
-      return [showWord, hideWord];
     });
 
-    const cursorAnimation = [
-      [scope.current.querySelector(".cursor"), { opacity: 0 }, { duration: 0.25, delay: delay }],
-    ];
+    // Add cursor animation at the end
+    animationSequence.push([
+      scope.current.querySelector(".cursor"),
+      { opacity: 0 },
+      { duration: 0.25, delay }
+    ]);
 
-    const sequence = [...animations, ...cursorAnimation];
-    animate(sequence);
+    animate(animationSequence);
   }, [animate, scope, words]);
 
   return (
