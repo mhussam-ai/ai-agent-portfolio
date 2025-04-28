@@ -1,12 +1,9 @@
-
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Search, Calendar, Clock } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import { BlogCard } from "@/components/blog/BlogCard";
+import { SearchBar } from "@/components/blog/SearchBar";
+import { NoResults } from "@/components/blog/NoResults";
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -90,11 +87,6 @@ const Blog = () => {
     }
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
-
   return (
     <>
       <Helmet>
@@ -128,17 +120,17 @@ const Blog = () => {
         initial="hidden"
         animate="show"
       >
-        <motion.h1 variants={item} className="text-4xl font-bold mb-8">Latest Articles</motion.h1>
+        <motion.h1 
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            show: { opacity: 1, y: 0 }
+          }} 
+          className="text-4xl font-bold mb-8"
+        >
+          Latest Articles
+        </motion.h1>
         
-        <motion.div variants={item} className="mb-8 relative max-w-md mx-auto">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
-          <Input 
-            placeholder="Search articles..." 
-            className="pl-10 focus-visible:ring-primary"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </motion.div>
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
         {filteredPosts.length > 0 ? (
           <motion.div 
@@ -148,63 +140,11 @@ const Blog = () => {
             animate="show"
           >
             {filteredPosts.map((post) => (
-              <motion.div 
-                key={post.id} 
-                variants={item}
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Link to={`/blog/${post.slug}`} className="block">
-                  <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-transparent hover:border-primary/20">
-                    <div className="md:flex">
-                      <div className="md:w-1/3 overflow-hidden">
-                        <motion.img 
-                          src={post.image} 
-                          alt={post.title} 
-                          className="h-full w-full object-cover"
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.5 }}
-                        />
-                      </div>
-                      <div className="md:w-2/3">
-                        <CardHeader>
-                          <div className="flex flex-wrap gap-2 mb-2">
-                            {post.categories.map(category => (
-                              <Badge key={category} variant="secondary" className="hover:bg-primary hover:text-white transition-all">
-                                {category}
-                              </Badge>
-                            ))}
-                          </div>
-                          <CardTitle className="text-2xl font-semibold group">
-                            <span className="bg-gradient-to-r from-foreground to-foreground bg-[length:0%_1px] group-hover:bg-[length:100%_1px] bg-left-bottom bg-no-repeat transition-all duration-500">
-                              {post.title}
-                            </span>
-                          </CardTitle>
-                          <CardDescription className="flex gap-4 text-sm items-center">
-                            <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {post.date}</span>
-                            <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-muted-foreground line-clamp-2">{post.excerpt}</p>
-                        </CardContent>
-                        <CardFooter>
-                          <span className="text-primary flex items-center group">
-                            Read More 
-                            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-                          </span>
-                        </CardFooter>
-                      </div>
-                    </div>
-                  </Card>
-                </Link>
-              </motion.div>
+              <BlogCard key={post.id} post={post} />
             ))}
           </motion.div>
         ) : (
-          <motion.div variants={item} className="text-center py-16">
-            <p className="text-xl text-muted-foreground">No articles found matching your search.</p>
-          </motion.div>
+          <NoResults />
         )}
       </motion.div>
     </>
