@@ -36,7 +36,7 @@ const Index = () => {
         
         {/* CTA Section */}
         <motion.section 
-          className="py-24 px-4 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden"
+          className="py-16 md:py-24 px-4 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -92,8 +92,6 @@ const Index = () => {
             </motion.div>
           </div>
         </motion.section>
-        
-        {/* Footer Navigation has been removed since it's already included in App.tsx */}
       </div>
     </>
   );
