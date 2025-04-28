@@ -37,10 +37,11 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // Store message in Supabase - Fix: Pass data directly as a single object, not in an array
+      // The data object from form submission is already correctly typed due to zod validation
+      // and matches the required fields for the messages table
       const { error: dbError } = await supabase
         .from('messages')
-        .insert(data); // This is the fixed line - data is already the correct shape
+        .insert(data);
 
       if (dbError) throw dbError;
 
