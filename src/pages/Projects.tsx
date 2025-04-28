@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -16,6 +15,8 @@ const Projects = () => {
   const [view, setView] = useState<"grid" | "list">("grid");
   const [featuredProject, setFeaturedProject] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState("all");
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollingDown, setScrollingDown] = useState(true);
   
   const projectsRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -23,7 +24,22 @@ const Projects = () => {
     offset: ["start start", "end start"]
   });
   
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollingDown(currentScrollY > lastScrollY);
+      setLastScrollY(currentScrollY);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+  
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.4],
+    scrollingDown ? [0.2, 0.6, 1] : [0.3, 0.7, 1]
+  );
   
   const projects = [
     {
@@ -201,7 +217,6 @@ const Projects = () => {
     new Set(projects.map(project => project.status))
   );
 
-  // Filter projects based on search term, category, and selected skills
   const filterProjects = (projects, tab, searchTerm, selectedSkills) => {
     return projects.filter(project => {
       const matchesTab = tab === "all" || project.category === tab;
@@ -216,13 +231,11 @@ const Projects = () => {
     });
   };
   
-  // Get featured project details
   const getFeaturedProject = () => {
     if (!featuredProject) return null;
     return projects.find(project => project.title === featuredProject);
   };
   
-  // Toggle selected skill
   const toggleSkill = (skill: string) => {
     if (selectedSkills.includes(skill)) {
       setSelectedSkills(selectedSkills.filter(s => s !== skill));
@@ -231,7 +244,6 @@ const Projects = () => {
     }
   };
   
-  // Clear all filters
   const clearFilters = () => {
     setSearchTerm("");
     setSelectedSkills([]);
@@ -337,7 +349,6 @@ const Projects = () => {
                   transition={{ duration: 0.5 }}
                   className="mb-10 mt-8"
                 >
-                  {/* Featured Project */}
                   <div className="relative p-6 rounded-xl bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 mb-8">
                     <Button 
                       variant="ghost" 

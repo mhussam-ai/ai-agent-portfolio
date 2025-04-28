@@ -7,9 +7,10 @@ interface ProjectsHeroProps {
 }
 
 export const ProjectsHero = ({ scrollProgress }: ProjectsHeroProps) => {
-  const opacity = useTransform(scrollProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollProgress, [0, 0.2], [1, 0.95]);
-  const y = useTransform(scrollProgress, [0, 0.2], [0, 50]);
+  // Adjusted opacity range to be more gradual and maintain minimum visibility
+  const opacity = useTransform(scrollProgress, [0, 0.4], [1, 0.2]);
+  const scale = useTransform(scrollProgress, [0, 0.3], [1, 0.98]);
+  const y = useTransform(scrollProgress, [0, 0.3], [0, 30]);
   
   return (
     <motion.div 
