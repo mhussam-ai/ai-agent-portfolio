@@ -23,30 +23,30 @@ export const TypewriterEffect = ({
   useEffect(() => {
     let delay = 0;
     
-    const animations = words.map((word, i) => {
-      const wordAnimation = [
-        [
-          `.word-${i}`,
-          { opacity: 1 },
-          { duration: 0.25, delay }
-        ],
-        [
-          `.word-${i}`,
-          { opacity: 0 },
-          { duration: 0.25, delay: 0.75 + delay }
-        ]
+    const animations = words.flatMap((word, i) => {
+      const showWord = [
+        scope.current.querySelector(`.word-${i}`),
+        { opacity: 1 },
+        { duration: 0.25, delay }
+      ];
+      
+      const hideWord = [
+        scope.current.querySelector(`.word-${i}`),
+        { opacity: 0 },
+        { duration: 0.25, delay: 0.75 + delay }
       ];
       
       delay += 1;
-      return wordAnimation;
-    }).flat();
+      return [showWord, hideWord];
+    });
 
-    const cursorAnimations = [
-      [".cursor", { opacity: 0 }, { duration: 0.25, delay: delay }],
+    const cursorAnimation = [
+      [scope.current.querySelector(".cursor"), { opacity: 0 }, { duration: 0.25, delay: delay }],
     ];
 
-    animate([...animations, ...cursorAnimations]);
-  }, [animate, words]);
+    const sequence = [...animations, ...cursorAnimation];
+    animate(sequence);
+  }, [animate, scope, words]);
 
   return (
     <div ref={scope} className={`flex items-center text-base md:text-xl ${className}`}>

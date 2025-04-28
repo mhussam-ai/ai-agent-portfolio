@@ -89,7 +89,7 @@ export const RecentPosts = () => {
                 <Card className="overflow-hidden h-full border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-all duration-300">
                   <div className="relative h-48 overflow-hidden">
                     <img 
-                      src={post.coverImage || "/placeholder.svg"} 
+                      src={post.image || "/placeholder.svg"} 
                       alt={post.title} 
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
@@ -103,7 +103,7 @@ export const RecentPosts = () => {
                       </div>
                       <div className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
-                        <span>{post.readingTime} min read</span>
+                        <span>{post.readTime} min read</span>
                       </div>
                     </div>
                     
