@@ -23,16 +23,20 @@ serve(async (req) => {
   try {
     console.log("[Contact Form] Processing new contact form submission");
     
-    // Log request details for debugging
-    const requestBody = await req.text();
-    console.log("[Contact Form] Request body:", requestBody);
-    
+    // Parse the request body correctly - directly as JSON
     let data: ContactFormData;
     try {
-      data = JSON.parse(requestBody);
+      data = await req.json();
+      console.log("[Contact Form] Request data:", JSON.stringify(data));
     } catch (parseError) {
-      console.error("[Contact Form] Error parsing request body:", parseError);
-      throw new Error("Invalid request format");
+      console.error("[Contact Form] Error parsing request body as JSON:", parseError);
+      return new Response(
+        JSON.stringify({ error: "Invalid request format", details: parseError.message }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
     }
 
     // Validate required fields
@@ -42,13 +46,21 @@ serve(async (req) => {
       if (!data.email) missingFields.push("email");
       if (!data.message) missingFields.push("message");
       
-      console.error("[Contact Form] Missing required fields:", missingFields);
-      throw new Error(`Missing required fields: ${missingFields.join(", ")}`);
+      const errorMsg = `Missing required fields: ${missingFields.join(", ")}`;
+      console.error("[Contact Form] " + errorMsg);
+      
+      return new Response(
+        JSON.stringify({ error: errorMsg }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
     }
 
     console.log("[Contact Form] Sending notification email to admin");
     
-    // Send email notification to you
+    // Send email notification to admin
     try {
       const adminEmailResult = await resend.emails.send({
         from: "Contact Form <onboarding@resend.dev>",
@@ -62,10 +74,26 @@ serve(async (req) => {
         `,
         reply_to: data.email,
       });
-      console.log("[Contact Form] Admin notification sent successfully:", adminEmailResult);
+      
+      if (adminEmailResult.error) {
+        throw new Error(`Admin email error: ${adminEmailResult.error.message || "Unknown error"}`);
+      }
+      
+      console.log("[Contact Form] Admin notification sent successfully:", JSON.stringify(adminEmailResult));
     } catch (emailError) {
       console.error("[Contact Form] Error sending admin notification:", emailError);
-      throw new Error("Failed to send admin notification");
+      console.error("[Contact Form] Error details:", JSON.stringify(emailError));
+      
+      return new Response(
+        JSON.stringify({ 
+          error: "Failed to send admin notification", 
+          message: emailError instanceof Error ? emailError.message : "Unknown error" 
+        }),
+        {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
     }
 
     console.log("[Contact Form] Sending confirmation email to user");
@@ -82,10 +110,16 @@ serve(async (req) => {
           <p>Best regards,<br>Mohammad Hussam</p>
         `,
       });
-      console.log("[Contact Form] User confirmation sent successfully:", userEmailResult);
+      
+      if (userEmailResult.error) {
+        throw new Error(`User email error: ${userEmailResult.error.message || "Unknown error"}`);
+      }
+      
+      console.log("[Contact Form] User confirmation sent successfully:", JSON.stringify(userEmailResult));
     } catch (emailError) {
       console.error("[Contact Form] Error sending user confirmation:", emailError);
-      // Don't throw here, as admin notification was already sent
+      console.error("[Contact Form] Error details:", JSON.stringify(emailError));
+      // Don't return an error response here, as admin notification was already sent
       console.warn("[Contact Form] Proceeding despite confirmation email failure");
     }
 
@@ -96,8 +130,13 @@ serve(async (req) => {
     });
   } catch (error) {
     console.error("[Contact Form] Fatal error processing submission:", error);
+    console.error("[Contact Form] Error details:", error instanceof Error ? error.stack : "No stack trace");
+    
     return new Response(
-      JSON.stringify({ error: "Failed to process contact form submission" }),
+      JSON.stringify({ 
+        error: "Failed to process contact form submission",
+        message: error instanceof Error ? error.message : "Unknown error"
+      }),
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },

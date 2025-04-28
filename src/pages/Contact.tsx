@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -42,22 +43,31 @@ const Contact = () => {
         message: data.message,
       };
       
+      // Store message in database first
       const { error: dbError } = await supabase
         .from('messages')
         .insert(messageData);
 
       if (dbError) throw dbError;
 
+      // Get the anon key for authorization
+      const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6YnlkZWxhbXluc3d6bmxjdHhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4NDA3OTIsImV4cCI6MjA2MTQxNjc5Mn0.f331Rw6uwmU5D4faT8WRah0nixefexTp5hDvLc23peo";
+
+      // Send request to edge function with proper headers
       const response = await fetch('https://rzbydelamynswznlctxd.supabase.co/functions/v1/contact-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabaseKey}`,
+          'apikey': supabaseKey,
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(messageData),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send email notifications');
+        const errorData = await response.json();
+        console.error('Edge function error:', errorData);
+        throw new Error(`Failed to send email: ${errorData?.error || response.statusText}`);
       }
 
       toast({
