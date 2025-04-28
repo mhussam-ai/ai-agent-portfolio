@@ -29,7 +29,7 @@ export const HomepageHero = () => {
   };
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center py-16 md:py-24 px-4">
+    <section className="relative min-h-[10dvh] flex flex-col justify-center py-16 md:py-24 px-4">
       <div className="container mx-auto max-w-6xl pt-16 md:pt-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Social Media Links - Left Side (Desktop) */}
