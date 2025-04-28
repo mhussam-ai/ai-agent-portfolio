@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -37,15 +36,18 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // The data object from form submission is already correctly typed due to zod validation
-      // and matches the required fields for the messages table
+      const messageData = {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+      };
+      
       const { error: dbError } = await supabase
         .from('messages')
-        .insert(data);
+        .insert(messageData);
 
       if (dbError) throw dbError;
 
-      // Send email notifications
       const response = await fetch('https://rzbydelamynswznlctxd.supabase.co/functions/v1/contact-form', {
         method: 'POST',
         headers: {
