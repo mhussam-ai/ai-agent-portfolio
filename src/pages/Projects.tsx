@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectsHero } from "@/components/projects/ProjectsHero";
 import { ProjectFilters } from "@/components/projects/ProjectFilters";
@@ -15,31 +15,12 @@ const Projects = () => {
   const [view, setView] = useState<"grid" | "list">("grid");
   const [featuredProject, setFeaturedProject] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState("all");
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrollingDown, setScrollingDown] = useState(true);
   
   const projectsRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: projectsRef,
     offset: ["start start", "end start"]
   });
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollingDown(currentScrollY > lastScrollY);
-      setLastScrollY(currentScrollY);
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
-  
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.4],
-    scrollingDown ? [0.2, 0.6, 1] : [0.3, 0.7, 1]
-  );
   
   const projects = [
     {
@@ -257,12 +238,8 @@ const Projects = () => {
     <div ref={projectsRef} className="min-h-screen bg-gradient-to-b from-background to-background/80">
       <ProjectsHero scrollProgress={scrollYProgress} />
       
-      <motion.div 
+      <div 
         className="container mx-auto px-4 py-10"
-        style={{ opacity }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
       >
         <div className="sticky top-20 z-30 pt-4 pb-4 bg-background/80 backdrop-blur-sm border-b mb-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -551,7 +528,7 @@ const Projects = () => {
             </Tabs>
           </ScrollArea>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

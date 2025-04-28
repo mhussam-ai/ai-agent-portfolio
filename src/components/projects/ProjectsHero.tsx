@@ -1,4 +1,3 @@
-
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { StarIcon } from "lucide-react";
 
@@ -7,15 +6,13 @@ interface ProjectsHeroProps {
 }
 
 export const ProjectsHero = ({ scrollProgress }: ProjectsHeroProps) => {
-  // Adjusted opacity range to be more gradual and maintain minimum visibility
-  const opacity = useTransform(scrollProgress, [0, 0.4], [1, 0.2]);
   const scale = useTransform(scrollProgress, [0, 0.3], [1, 0.98]);
   const y = useTransform(scrollProgress, [0, 0.3], [0, 30]);
   
   return (
     <motion.div 
       className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary/5 to-background"
-      style={{ opacity, scale, y }}
+      style={{ scale, y }}
     >
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
