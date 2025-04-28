@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Github, Linkedin, Mail, Smile, FileText } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Smile, FileText, Book, User, Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -64,20 +63,50 @@ const Index = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
         >
-          <Button asChild size="lg" className="gap-2 group">
+          <Button asChild size="lg" className="gap-2 group hover:scale-105 transition-all duration-300">
             <Link to="/projects">
+              <Briefcase className="h-4 w-4" />
               View Projects 
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="gap-2 border-primary/30 hover:border-primary transition-colors">
+
+          <Button asChild size="lg" className="gap-2 group hover:scale-105 transition-all duration-300">
+            <Link to="/skills">
+              <Book className="h-4 w-4" />
+              Skills
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </Button>
+
+          <Button asChild size="lg" className="gap-2 group hover:scale-105 transition-all duration-300">
+            <Link to="/about">
+              <User className="h-4 w-4" />
+              About Me
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </Button>
+
+          <Button asChild size="lg" className="gap-2 group hover:scale-105 transition-all duration-300">
+            <Link to="/blog">
+              <FileText className="h-4 w-4" />
+              Blog
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </Button>
+
+          <Button asChild variant="outline" size="lg" className="gap-2 border-primary/30 hover:border-primary transition-colors hover:scale-105 duration-300">
             <a href="/resume.pdf" download aria-label="Download Resume">
               <FileText className="h-4 w-4" />
               Download Resume
             </a>
           </Button>
-          <Button asChild variant="outline" size="lg" className="border-primary/30 hover:border-primary transition-colors">
-            <Link to="/contact">Get in Touch</Link>
+
+          <Button asChild variant="outline" size="lg" className="gap-2 border-primary/30 hover:border-primary transition-colors hover:scale-105 duration-300">
+            <Link to="/contact">
+              <Mail className="h-4 w-4" />
+              Get in Touch
+            </Link>
           </Button>
         </motion.div>
 
