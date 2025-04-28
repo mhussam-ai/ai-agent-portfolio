@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -36,10 +37,10 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // Store message in Supabase
+      // Store message in Supabase - Fix: Pass data directly as a single object, not in an array
       const { error: dbError } = await supabase
         .from('messages')
-        .insert([data]);
+        .insert(data); // This is the fixed line - data is already the correct shape
 
       if (dbError) throw dbError;
 
