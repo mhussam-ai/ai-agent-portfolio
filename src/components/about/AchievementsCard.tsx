@@ -1,10 +1,16 @@
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Award, ChevronUp, ChevronDown, Star } from "lucide-react";
+import { Award, ChevronUp, ChevronDown, Star, Trophy } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
 
 const achievements = [
+  {
+    title: "The Better Hack Winner",
+    description: "First place winner in The Better Hack hackathon, recognized for innovative AI solution",
+    highlight: true
+  },
   {
     title: "Class Representative First Year",
     description: "Elected by peers to represent class interests and coordinate with faculty"
@@ -59,14 +65,25 @@ export const AchievementsCard = ({ isMobile, expandedSection, toggleSection }: A
                 {achievements.map((achievement, index) => (
                   <li 
                     key={index} 
-                    className="bg-white/80 dark:bg-black/20 p-4 rounded-lg backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors"
+                    className={`bg-white/80 dark:bg-black/20 p-4 rounded-lg backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors ${achievement.highlight ? 'border-l-4 border-yellow-400' : ''}`}
                   >
                     <div className="flex items-start gap-2">
-                      <div className="p-1 bg-primary/10 rounded-full mt-0.5">
-                        <Star className="h-3.5 w-3.5 text-primary" />
+                      <div className={`p-1 rounded-full mt-0.5 ${achievement.highlight ? 'bg-yellow-400/20' : 'bg-primary/10'}`}>
+                        {achievement.highlight ? (
+                          <Trophy className={`h-3.5 w-3.5 ${achievement.highlight ? 'text-yellow-600' : 'text-primary'}`} />
+                        ) : (
+                          <Star className="h-3.5 w-3.5 text-primary" />
+                        )}
                       </div>
                       <div>
-                        <h4 className="font-medium text-foreground">{achievement.title}</h4>
+                        <div className="flex gap-2 items-center">
+                          <h4 className="font-medium text-foreground">{achievement.title}</h4>
+                          {achievement.highlight && (
+                            <Badge className="bg-yellow-400/20 text-yellow-700 text-xs border-yellow-400/30">
+                              New
+                            </Badge>
+                          )}
+                        </div>
                         <p className="text-sm text-muted-foreground mt-1">{achievement.description}</p>
                       </div>
                     </div>
@@ -99,17 +116,28 @@ export const AchievementsCard = ({ isMobile, expandedSection, toggleSection }: A
             {achievements.map((achievement, index) => (
               <motion.li 
                 key={index} 
-                className="bg-white/80 dark:bg-black/20 p-4 rounded-lg backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors"
+                className={`bg-white/80 dark:bg-black/20 p-4 rounded-lg backdrop-blur-sm hover:bg-white/90 dark:hover:bg-black/30 transition-colors ${achievement.highlight ? 'border-l-4 border-yellow-400' : ''}`}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
                 <div className="flex items-start gap-2">
-                  <div className="p-1 bg-primary/10 rounded-full mt-0.5">
-                    <Star className="h-3.5 w-3.5 text-primary" />
+                  <div className={`p-1 rounded-full mt-0.5 ${achievement.highlight ? 'bg-yellow-400/20' : 'bg-primary/10'}`}>
+                    {achievement.highlight ? (
+                      <Trophy className={`h-3.5 w-3.5 ${achievement.highlight ? 'text-yellow-600' : 'text-primary'}`} />
+                    ) : (
+                      <Star className="h-3.5 w-3.5 text-primary" />
+                    )}
                   </div>
                   <div>
-                    <h4 className="font-medium text-foreground">{achievement.title}</h4>
+                    <div className="flex gap-2 items-center">
+                      <h4 className="font-medium text-foreground">{achievement.title}</h4>
+                      {achievement.highlight && (
+                        <Badge className="bg-yellow-400/20 text-yellow-700 text-xs border-yellow-400/30">
+                          New
+                        </Badge>
+                      )}
+                    </div>
                     <p className="text-sm text-muted-foreground mt-1">{achievement.description}</p>
                   </div>
                 </div>

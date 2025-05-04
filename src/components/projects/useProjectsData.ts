@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 export interface Project {
@@ -16,6 +15,14 @@ export interface Project {
   architecture?: string;
   technicalDetails?: string;
   implementationChallenges?: string;
+  isWinner?: boolean;
+  winnerDetails?: {
+    hackathon: string;
+    date: string;
+    achievement: string;
+    judges?: string[];
+    prize?: string;
+  };
 }
 
 export const useProjectsData = () => {
@@ -225,6 +232,39 @@ export const useProjectsData = () => {
       },
       architecture: "CollegeBot is built on a modular architecture with (1) Intent Recognition Module that identifies what information the student is seeking, (2) Entity Extraction that pulls out specific details like course names or dates, (3) Dialog Management System that maintains conversation flow, and (4) Response Generator that creates natural language replies.",
       technicalDetails: "The chatbot uses Rasa's open-source framework with custom components for handling college-specific terminology and queries. A knowledge base built on MongoDB stores structured information about courses, faculty, and campus resources. The system can handle complex multi-turn conversations and remember context from previous interactions."
+    },
+    {
+      title: "Better Hack Winner - AI Knowledge Navigator",
+      description: "Award-winning project from The Better Hack hackathon that uses natural language processing and knowledge graphs to transform how users interact with complex data. Built in 24 hours, this solution impressed judges with its innovative approach and technical implementation.",
+      image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80&auto=format&fit=crop",
+      tech: ["React", "LangChain", "Neo4j", "GPT-4", "TypeScript"],
+      features: [
+        "Intuitive knowledge exploration interface",
+        "Advanced semantic search capabilities",
+        "Dynamic knowledge graph visualization",
+        "Real-time collaborative features",
+        "Enterprise data integration capabilities",
+        "Customizable dashboards for insights"
+      ],
+      date: "May 2023",
+      category: "ai",
+      status: "completed",
+      isWinner: true,
+      winnerDetails: {
+        hackathon: "The Better Hack",
+        date: "May 2023",
+        achievement: "First Place Overall",
+        judges: ["Dr. Sarah Chen, AI Research Lead", "Michael Rodriguez, Tech Investor", "Jennifer Liu, Product Lead"],
+        prize: "$10,000 and 6-month enterprise partnership opportunity"
+      },
+      metrics: {
+        developmentTime: "24 hours",
+        teamSize: "Solo developer",
+        impact: "Selected for enterprise adoption"
+      },
+      architecture: "The AI Knowledge Navigator uses a microservice architecture with a React frontend and Node.js backend. The system integrates with Neo4j for knowledge graph storage and leverages LangChain and GPT-4 for natural language understanding and generation. Real-time features are implemented using Socket.io.",
+      technicalDetails: "The solution implements a novel approach to knowledge representation by combining traditional graph databases with vector embeddings for semantic search. This hybrid approach allows for both structured queries and natural language exploration of complex datasets.",
+      implementationChallenges: "The biggest challenge was developing the knowledge graph visualization system within the 24-hour time constraint. This was solved by implementing a custom force-directed graph algorithm optimized for performance with large datasets and complex relationships."
     }
   ];
 

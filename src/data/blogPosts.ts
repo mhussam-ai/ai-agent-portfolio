@@ -1,19 +1,23 @@
 
+import { seoGuide2025 } from "./blog-posts/seo-guide-2025";
+import { technicalSeoFundamentals } from "./blog-posts/technical-seo-fundamentals";
+import { answerEngineOptimization } from "./blog-posts/answer-engine-optimization";
+import { contentOptimization } from "./blog-posts/content-optimization";
+import { localSeoStrategies } from "./blog-posts/local-seo-strategies";
+import { aiAgentsCustomerService } from "./blog-posts/ai-agents-customer-service";
+import { aiAgentsEnterprise } from "./blog-posts/ai-agents-enterprise";
+import { betterHackExperience } from "./blog-posts/better-hack-experience";
 import { BlogPost } from "@/types/blog";
-import { aiAgentsPost } from "./blog-posts/ai-agents-customer-service";
-import { seoGuidePost } from "./blog-posts/seo-guide-2025";
-import { answerEnginePost } from "./blog-posts/answer-engine-optimization";
-import { technicalSeoPost } from "./blog-posts/technical-seo-fundamentals";
-import { contentOptimizationPost } from "./blog-posts/content-optimization";
-import { localSeoPost } from "./blog-posts/local-seo-strategies";
-import { aiAgentsEnterprisePost } from "./blog-posts/ai-agents-enterprise";
 
 export const blogPosts: BlogPost[] = [
-  aiAgentsEnterprisePost,
-  aiAgentsPost,
-  seoGuidePost,
-  answerEnginePost,
-  technicalSeoPost,
-  contentOptimizationPost,
-  localSeoPost
+  betterHackExperience,
+  seoGuide2025,
+  technicalSeoFundamentals,
+  answerEngineOptimization,
+  contentOptimization,
+  localSeoStrategies,
+  aiAgentsCustomerService,
+  aiAgentsEnterprise,
 ];
+
+export default blogPosts;

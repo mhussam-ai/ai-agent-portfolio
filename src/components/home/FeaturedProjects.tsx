@@ -1,13 +1,23 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const FeaturedProjects = () => {
   const featuredProjects = [
+    {
+      id: 0,
+      title: "Better Hack Winner - AI Knowledge Navigator",
+      description: "Award-winning project that uses NLP and knowledge graphs to transform how users interact with complex data.",
+      image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1000",
+      tags: ["AI", "Knowledge Graphs", "Hackathon Winner"],
+      link: "/projects",
+      date: "May 2023",
+      isWinner: true
+    },
     {
       id: 1,
       title: "Voice AI Agent for Customer Support",
@@ -25,16 +35,6 @@ export const FeaturedProjects = () => {
       tags: ["Autonomous Agent", "Relevance AI", "Lead Generation"],
       link: "/projects",
       date: "March 2025"
-    },
-    {
-      id: 3,
-      title: "GrainSight AI",
-      description: "Computer vision system for grain quality prediction using Google ADK and Gemini model.",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1000",
-      tags: ["Computer Vision", "Google ADK", "Gemini"],
-      link: "https://github.com/mhussam-ai/Grain-Quality-AI",
-      github: "https://github.com/mhussam-ai/Grain-Quality-AI",
-      date: "February 2025"
     }
   ];
 
@@ -112,7 +112,7 @@ export const FeaturedProjects = () => {
               whileHover={{ y: -5 }}
               transition={{ type: "spring" }}
             >
-              <Card className="overflow-hidden h-full border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-all duration-300">
+              <Card className={`overflow-hidden h-full border border-border/50 bg-card/30 backdrop-blur-sm hover:shadow-xl transition-all duration-300 ${project.isWinner ? 'border-yellow-400/50 ring-1 ring-yellow-400/20' : 'hover:border-primary/50'}`}>
                 <div className="relative h-48 overflow-hidden">
                   <img 
                     src={project.image} 
@@ -122,19 +122,12 @@ export const FeaturedProjects = () => {
                       e.currentTarget.src = "/placeholder.svg";
                     }}
                   />
-                  <div className="absolute top-4 right-4 flex gap-2">
-                    {project.github && (
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="bg-background/80 hover:bg-background p-2 rounded-full backdrop-blur-sm transition-colors"
-                        aria-label="GitHub Repository"
-                      >
-                        <Github className="h-4 w-4" />
-                      </a>
-                    )}
-                  </div>
+                  {project.isWinner && (
+                    <div className="absolute top-0 left-0 bg-gradient-to-r from-yellow-400 to-amber-600 text-white px-3 py-1 flex items-center gap-1 shadow-lg">
+                      <Trophy className="h-3 w-3" />
+                      <span className="text-xs font-bold">WINNER</span>
+                    </div>
+                  )}
                   <div className="absolute bottom-4 left-4">
                     <Badge variant="secondary" className="backdrop-blur-sm bg-background/80">{project.date}</Badge>
                   </div>
@@ -146,14 +139,15 @@ export const FeaturedProjects = () => {
                   
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.map((tag, index) => (
-                      <Badge key={index} variant="outline" className="bg-primary/5">
+                      <Badge key={index} variant="outline" className={`${project.isWinner && tag === 'Hackathon Winner' ? 'bg-yellow-400/10 text-yellow-700 border-yellow-400/30' : 'bg-primary/5'}`}>
+                        {tag === 'Hackathon Winner' && <Trophy className="h-3 w-3 mr-1" />}
                         {tag}
                       </Badge>
                     ))}
                   </div>
                   
                   <div className="mt-auto">
-                    <Button asChild variant="ghost" size="sm" className="gap-1 hover:bg-primary/10 hover:text-primary p-0">
+                    <Button asChild variant="ghost" size="sm" className={`gap-1 p-0 ${project.isWinner ? 'hover:bg-yellow-400/10 hover:text-yellow-700' : 'hover:bg-primary/10 hover:text-primary'}`}>
                       <Link to={project.link}>
                         Learn More
                         <ArrowRight className="h-3 w-3" />

@@ -2,7 +2,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Github, Star, ArrowUp } from "lucide-react";
+import { Calendar, Github, Star, ArrowUp, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface ProjectCardProps {
@@ -17,6 +17,14 @@ interface ProjectCardProps {
     github?: string;
     status?: string;
     metrics?: Record<string, string>;
+    isWinner?: boolean;
+    winnerDetails?: {
+      hackathon: string;
+      date: string;
+      achievement: string;
+      judges?: string[];
+      prize?: string;
+    };
   };
   index: number;
   view: "grid" | "list";
@@ -41,12 +49,18 @@ export const ProjectCard = ({
       >
         <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-transparent hover:border-primary/20">
           <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/4 aspect-video">
+            <div className="md:w-1/4 aspect-video relative">
               <img
                 src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover"
               />
+              {project.isWinner && (
+                <div className="absolute top-0 left-0 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-3 py-1 flex items-center gap-1 shadow-lg">
+                  <Trophy className="h-3 w-3" />
+                  <span className="text-xs font-bold">WINNER</span>
+                </div>
+              )}
             </div>
             <div className="p-6 flex flex-col flex-grow">
               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
@@ -59,6 +73,12 @@ export const ProjectCard = ({
                     'bg-amber-500/10 text-amber-600'
                   }`}>
                     {project.status}
+                  </Badge>
+                )}
+                {project.isWinner && (
+                  <Badge className="bg-yellow-500/10 text-yellow-600 border-yellow-500/30 ml-2">
+                    <Trophy className="h-3 w-3 mr-1" /> 
+                    {project.winnerDetails?.hackathon || "Hackathon Winner"}
                   </Badge>
                 )}
               </div>
@@ -125,6 +145,12 @@ export const ProjectCard = ({
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
+          {project.isWinner && (
+            <div className="absolute top-0 left-0 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-3 py-1 flex items-center gap-1 shadow-lg">
+              <Trophy className="h-3 w-3" />
+              <span className="text-xs font-bold">WINNER</span>
+            </div>
+          )}
           {project.status && (
             <Badge className={`absolute top-3 right-3 capitalize ${
               project.status === 'completed' ? 'bg-green-500 text-white' : 
@@ -149,6 +175,12 @@ export const ProjectCard = ({
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
             <Calendar className="h-4 w-4" />
             <span>{project.date}</span>
+            {project.isWinner && (
+              <Badge className="bg-yellow-500/10 text-yellow-600 border-yellow-500/30 ml-2">
+                <Trophy className="h-3 w-3 mr-1" /> 
+                {project.winnerDetails?.hackathon || "Hackathon Winner"}
+              </Badge>
+            )}
           </div>
           
           <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">

@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, Trophy } from "lucide-react";
 import { TypewriterEffect } from "../TypewriterEffect";
 import { SocialLinks } from "./SocialLinks";
 
@@ -41,10 +41,17 @@ export const HeroContent = ({ typewriterWords }: HeroContentProps) => {
       
       <motion.h1 
         variants={item} 
-        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2"
       >
         Mohammad Hussam
       </motion.h1>
+
+      <motion.div variants={item} className="flex items-center gap-2 mb-3">
+        <Badge className="bg-gradient-to-r from-yellow-400 to-amber-600 hover:from-yellow-500 hover:to-amber-700 py-1 px-3 text-white flex items-center gap-1.5 shadow-lg">
+          <Trophy className="h-3.5 w-3.5" />
+          <span className="font-medium">The Better Hack Winner</span>
+        </Badge>
+      </motion.div>
       
       <motion.div variants={item} className="h-10 md:h-12 mb-6">
         <TypewriterEffect words={typewriterWords} className="text-xl md:text-2xl lg:text-3xl font-medium text-muted-foreground" />
@@ -86,3 +93,6 @@ export const HeroContent = ({ typewriterWords }: HeroContentProps) => {
     </motion.div>
   );
 };
+
+// Missing import for Badge component
+import { Badge } from "@/components/ui/badge";

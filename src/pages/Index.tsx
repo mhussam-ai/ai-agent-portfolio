@@ -8,19 +8,25 @@ import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { SkillsHighlight } from "@/components/home/SkillsHighlight";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { RecentPosts } from "@/components/home/RecentPosts";
+import { AchievementBanner } from "@/components/home/AchievementBanner";
 import { Helmet } from "react-helmet";
 
 const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Mohammad Hussam | AI Specialist & Agent Developer</title>
-        <meta name="description" content="AI Specialist with expertise in agentic systems, voice interfaces, and machine learning. Building intelligent solutions with modern AI technologies." />
+        <title>Mohammad Hussam | AI Specialist & Hackathon Winner</title>
+        <meta name="description" content="AI Specialist with expertise in agentic systems, voice interfaces, and machine learning. Winner of The Better Hack Hackathon, building intelligent solutions with modern AI technologies." />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-background text-foreground">
         {/* Hero Section */}
         <HomepageHero />
+        
+        {/* Achievement Banner */}
+        <div className="container mx-auto px-4">
+          <AchievementBanner />
+        </div>
         
         {/* Featured Projects */}
         <FeaturedProjects />
