@@ -4,18 +4,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BlogPost } from "@/types/blog";
 
 interface BlogCardProps {
-  post: {
-    id: number;
-    slug: string;
-    title: string;
-    excerpt: string;
-    date: string;
-    readTime: string;
-    categories: string[];
-    image: string;
-  };
+  post: BlogPost;
 }
 
 export function BlogCard({ post }: BlogCardProps) {

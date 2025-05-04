@@ -1,6 +1,7 @@
+
 import { BlogPost } from "@/types/blog";
 
-export const aiAgentsPost: BlogPost = {
+export const aiAgentsCustomerServicePost: BlogPost = {
   id: 1,
   slug: "future-of-ai-agents-in-customer-service",
   title: "The Future of AI Agents in Customer Service",
@@ -99,3 +100,5 @@ Organizations that strategically implement AI in their customer service operatio
     }
   ]
 };
+
+export default aiAgentsCustomerServicePost;
