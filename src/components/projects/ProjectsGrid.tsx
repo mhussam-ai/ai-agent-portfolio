@@ -1,19 +1,7 @@
 
 import { ProjectCard } from "@/components/ProjectCard";
 import { NoProjectsFound } from "./NoProjectsFound";
-
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  tech: string[];
-  features: string[];
-  date: string;
-  category: string;
-  github?: string;
-  status?: string;
-  metrics?: Record<string, string>;
-}
+import { Project } from "@/types/project";
 
 interface ProjectsGridProps {
   projects: Project[];
