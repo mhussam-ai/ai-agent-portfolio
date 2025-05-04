@@ -1,3 +1,4 @@
+
 import { BlogPost } from "@/types/blog";
 
 export const localSeoPost: BlogPost = {
@@ -113,7 +114,7 @@ Develop a comprehensive review response framework:
 
 Local businesses must implement comprehensive schema markup, including:
 
-```json
+\`\`\`
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -150,7 +151,7 @@ Local businesses must implement comprehensive schema markup, including:
     "https://www.instagram.com/businessname"
   ]
 }
-```
+\`\`\`
 
 Additionally, implement service-specific schema and FAQ schema for common questions about your local business.
 
