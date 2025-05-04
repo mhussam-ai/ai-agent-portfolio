@@ -1,3 +1,4 @@
+
 import { BlogPost } from "@/types/blog";
 
 export const answerEnginePost: BlogPost = {
@@ -170,3 +171,5 @@ By implementing structured content formats, comprehensive FAQ coverage, and ques
     }
   ]
 };
+
+export default answerEnginePost;

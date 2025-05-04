@@ -1,3 +1,4 @@
+
 import { BlogPost } from "@/types/blog";
 
 export const technicalSeoPost: BlogPost = {
@@ -281,3 +282,5 @@ By treating technical SEO as a foundational element of your digital strategy rat
     }
   ]
 };
+
+export default technicalSeoPost;

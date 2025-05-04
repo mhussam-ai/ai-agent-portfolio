@@ -1,3 +1,4 @@
+
 import { BlogPost } from "@/types/blog";
 
 export const seoGuidePost: BlogPost = {
@@ -164,3 +165,5 @@ To stay competitive, focus on:
     }
   ]
 };
+
+export default seoGuidePost;
