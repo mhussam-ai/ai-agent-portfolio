@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Trophy, Star } from "lucide-react";
+import { Trophy, Star, PlayCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -43,6 +43,12 @@ export const AchievementBanner = () => {
               <Link to="/blog/better-hack-experience">
                 Read My Experience
               </Link>
+            </Button>
+            <Button asChild size="sm" variant="outline" className="gap-2">
+              <a href="https://m.youtube.com/watch?v=Jk8AbWd5IuM" target="_blank" rel="noopener noreferrer">
+                Watch Demo
+                <PlayCircle className="h-4 w-4" />
+              </a>
             </Button>
           </div>
         </div>
